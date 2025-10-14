@@ -59,12 +59,12 @@ train_vars_personas_hogar <- train_vars_personas_hogar |>
 #variables por jefe del hogar
 train_jefe_hogar <- train_personas |> 
   filter(bin_head == 1) |>
-  select(id, bin_woman, cat_educ, bin_occupied, bin_social_sec, edad, bin_c_propia) |>
+  select(id, bin_woman, cat_educ, bin_social_sec, edad, bin_c_propia) |>
   rename(bin_headWoman = bin_woman,
          cat_educHead = cat_educ,
          edad_head = edad,
-         bin_headCpropia = bin_c_propia,
-         bin_occupiedHead = bin_occupied) |>
+         bin_headSS = bin_social_sec,
+         bin_headCpropia = bin_c_propia) |>
   left_join(train_vars_personas_hogar, by = "id")
 
 #variables de la base a nivel hogar
@@ -139,12 +139,12 @@ test_vars_personas_hogar <- test_vars_personas_hogar |>
 #variables por jefe del hogar
 test_jefe_hogar <- test_personas |> 
   filter(bin_head == 1) |>
-  select(id, bin_woman, cat_educ, bin_occupied, bin_social_sec, edad, bin_c_propia) |>
+  select(id, bin_woman, cat_educ, bin_social_sec, edad, bin_c_propia) |>
   rename(bin_headWoman = bin_woman,
          cat_educHead = cat_educ,
          edad_head = edad,
-         bin_headCpropia = bin_c_propia,
-         bin_occupiedHead = bin_occupied) |>
+         bin_headSS = bin_social_sec,
+         bin_headCpropia = bin_c_propia) |>
   left_join(test_vars_personas_hogar, by = "id")
 
 #variables de la base a nivel hogar
