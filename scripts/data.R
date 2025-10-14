@@ -49,10 +49,8 @@ train_vars_personas_hogar <- train_personas |>
             num_ocu = sum(bin_occupied, na.rm = TRUE),
             num_pet = sum(pet, na.rm = TRUE),
             num_inac = sum(inac, na.rm=TRUE)) |> 
-  mutate(t_inac = num_inac/num_pet,
-         t_ocu = num_ocu/num_pet,
+  mutate(t_ocu = num_ocu/num_pet,
          t_dependencia = if_else(num_pet > 0, 100 * num_dep / num_pet, NA_real_),
-         t_educ_sup = num_educ_sup/num_pet,
          t_c_propia = num_c_propia/num_pet) |>
   ungroup()
 train_vars_personas_hogar <- train_vars_personas_hogar |> 
