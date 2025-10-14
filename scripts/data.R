@@ -50,6 +50,8 @@ train_vars_personas_hogar <- train_personas |>
             num_pet = sum(pet, na.rm = TRUE),
             num_inac = sum(inac, na.rm=TRUE)) |> 
   mutate(t_ocu = num_ocu/num_pet,
+         t_inac = num_inac/num_pet,
+         t_educ_sup = num_educ_sup/num_pet,
          t_dependencia = if_else(num_pet > 0, 100 * num_dep / num_pet, NA_real_),
          t_c_propia = num_c_propia/num_pet) |>
   ungroup()
@@ -59,12 +61,13 @@ train_vars_personas_hogar <- train_vars_personas_hogar |>
 #variables por jefe del hogar
 train_jefe_hogar <- train_personas |> 
   filter(bin_head == 1) |>
-  select(id, bin_woman, cat_educ, bin_social_sec, edad, bin_c_propia) |>
+  select(id, bin_woman, cat_educ, bin_social_sec, bin_occupied, edad, bin_c_propia) |>
   rename(bin_headWoman = bin_woman,
          cat_educHead = cat_educ,
          edad_head = edad,
          bin_headSS = bin_social_sec,
-         bin_headCpropia = bin_c_propia) |>
+         bin_headCpropia = bin_c_propia,
+         bin_occupiedHead = bin_occupied) |>
   left_join(train_vars_personas_hogar, by = "id")
 
 #variables de la base a nivel hogar
@@ -130,6 +133,8 @@ test_vars_personas_hogar <- test_personas |>
             num_pet = sum(pet, na.rm = TRUE),
             num_inac = sum(inac, na.rm=TRUE)) |> 
   mutate(t_ocu = num_ocu/num_pet,
+         t_inac = num_inac/num_pet,
+         t_educ_sup = num_educ_sup/num_pet,
          t_dependencia = if_else(num_pet > 0, 100 * num_dep / num_pet, NA_real_),
          t_c_propia = num_c_propia/num_pet) |>
   ungroup()
@@ -139,12 +144,13 @@ test_vars_personas_hogar <- test_vars_personas_hogar |>
 #variables por jefe del hogar
 test_jefe_hogar <- test_personas |> 
   filter(bin_head == 1) |>
-  select(id, bin_woman, cat_educ, bin_social_sec, edad, bin_c_propia) |>
+  select(id, bin_woman, cat_educ, bin_social_sec, bin_occupied, edad, bin_c_propia) |>
   rename(bin_headWoman = bin_woman,
          cat_educHead = cat_educ,
          edad_head = edad,
          bin_headSS = bin_social_sec,
-         bin_headCpropia = bin_c_propia) |>
+         bin_headCpropia = bin_c_propia,
+         bin_occupiedHead = bin_occupied) |>
   left_join(test_vars_personas_hogar, by = "id")
 
 #variables de la base a nivel hogar
