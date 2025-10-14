@@ -63,7 +63,6 @@ train_jefe_hogar <- train_personas |>
   rename(bin_headWoman = bin_woman,
          cat_educHead = cat_educ,
          edad_head = edad,
-         bin_headSS = bin_social_sec,
          bin_headCpropia = bin_c_propia,
          bin_occupiedHead = bin_occupied) |>
   left_join(train_vars_personas_hogar, by = "id")
@@ -130,10 +129,8 @@ test_vars_personas_hogar <- test_personas |>
             num_ocu = sum(bin_occupied, na.rm = TRUE),
             num_pet = sum(pet, na.rm = TRUE),
             num_inac = sum(inac, na.rm=TRUE)) |> 
-  mutate(t_inac = num_inac/num_pet,
-         t_ocu = num_ocu/num_pet,
+  mutate(t_ocu = num_ocu/num_pet,
          t_dependencia = if_else(num_pet > 0, 100 * num_dep / num_pet, NA_real_),
-         t_educ_sup = num_educ_sup/num_pet,
          t_c_propia = num_c_propia/num_pet) |>
   ungroup()
 test_vars_personas_hogar <- test_vars_personas_hogar |> 
@@ -146,7 +143,6 @@ test_jefe_hogar <- test_personas |>
   rename(bin_headWoman = bin_woman,
          cat_educHead = cat_educ,
          edad_head = edad,
-         bin_headSS = bin_social_sec,
          bin_headCpropia = bin_c_propia,
          bin_occupiedHead = bin_occupied) |>
   left_join(test_vars_personas_hogar, by = "id")
