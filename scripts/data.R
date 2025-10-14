@@ -161,17 +161,10 @@ test_hogares <- test_hogares |>
 #base definitiva
 test <- test_hogares |>  left_join(test_jefe_hogar)
 
-#categóricas a factores
-test <- test |> 
-  mutate(Dominio = factor(Dominio),
-         cat_maxEduc = factor(
-           cat_maxEduc, 
-           levels = c(0:6),
-           labels=c("No sabe",'Ninguno', 'Preescolar', 'Primaria',
-                    'Secundaria', 'Media', 'Universitaria')),
-         cat_educHead = factor(
-           cat_educHead, 
-           levels = c(0:6),
-           labels=c("No sabe",'Ninguno', 'Preescolar', 'Primaria',
-                    'Secundaria', 'Media', 'Universitaria')))
+#guardar ambas bases
+write.csv(train, "stores/train.csv", row.names = FALSE)
+write.csv(test, "stores/test.csv", row.names = FALSE)
+
+
+
 
