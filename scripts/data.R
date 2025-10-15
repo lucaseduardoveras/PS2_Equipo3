@@ -25,7 +25,7 @@ train_personas<- train_personas |>
          cat_educ = ifelse(P6210==9,0,P6210), # La categoría 9 no añade valor.
          bin_occupied = ifelse(is.na(Oc),0,1),
          bin_inac = ifelse(is.na(Ina), 0, 1),
-         bin_c_propia = ifelse(P6430==4, 1, 0),
+         bin_c_propia = ifelse(!is.na(P6430) & P6430 == 4, 1, 0),
          bin_social_sec = ifelse(P6090==1, 1, 0)) |> 
   rename(edad = P6040,
          pet = Pet,
@@ -108,7 +108,7 @@ test_personas<- test_personas |>
          cat_educ = ifelse(P6210==9,0,P6210), # La categoría 9 no añade valor.
          bin_occupied = ifelse(is.na(Oc),0,1),
          bin_inac = ifelse(is.na(Ina), 0, 1),
-         bin_c_propia = ifelse(P6430==4, 1, 0),
+         bin_c_propia = ifelse(!is.na(P6430) & P6430 == 4, 1, 0),
          bin_social_sec = ifelse(P6090==1, 1, 0)) |> 
   rename(edad = P6040,
          pet = Pet,
