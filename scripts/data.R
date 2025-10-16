@@ -181,7 +181,6 @@ test_hogares <- test_hogares |>
 #base definitiva
 test <- test_hogares |> 
   left_join(test_jefe_hogar) |>
-  select(-id) # Ya no necesitamos el identificador.
 
 #categóricas a factores
 test <- test |> 
