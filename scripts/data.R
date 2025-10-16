@@ -1,4 +1,4 @@
-setwd(choose.dir())
+setwd(dirname(dirname(rstudioapi::getActiveDocumentContext()$path)))
 
 require("pacman")
 p_load(tidyverse, 
