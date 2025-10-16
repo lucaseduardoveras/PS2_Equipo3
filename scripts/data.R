@@ -180,7 +180,7 @@ test_hogares <- test_hogares |>
 
 #base definitiva
 test <- test_hogares |> 
-  left_join(test_jefe_hogar) |>
+  left_join(test_jefe_hogar)
 
 #categóricas a factores
 test <- test |> 
