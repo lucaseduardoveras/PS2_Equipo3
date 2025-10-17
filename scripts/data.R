@@ -80,7 +80,7 @@ train_hogares <- train_hogares |>
   mutate(P5090 = ifelse(P5090==6,0,P5090)) |>
     rename(n_habitaciones = P5000,
            tipo_vivienda = P5090) |>
-  select(id, Dominio, Pobre, Nper, Lp, n_habitaciones, tipo_vivienda)
+  select(id, Dominio, Pobre, Nper, n_habitaciones, tipo_vivienda)
 
 #base definitiva
 train <- train_hogares |> 
@@ -176,7 +176,7 @@ test_hogares <- test_hogares |>
   mutate(P5090 = ifelse(P5090==6,0,P5090)) |>
   rename(n_habitaciones = P5000,
          tipo_vivienda = P5090) |>
-  select(id, Dominio, Nper, Lp, n_habitaciones, tipo_vivienda)
+  select(id, Dominio, Nper, n_habitaciones, tipo_vivienda)
 
 #base definitiva
 test <- test_hogares |> 
