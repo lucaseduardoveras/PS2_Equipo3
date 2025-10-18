@@ -1,0 +1,136 @@
+\documentclass[12pt,a4paper,onecolumn]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          				PACKAGES  				              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[margin=1in]{geometry}
+\usepackage{authblk}
+\usepackage{caption}
+\usepackage[utf8]{inputenc}
+\makeatother
+\usepackage{amsfonts}
+\usepackage{a4wide,graphicx,color}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[table]{xcolor}
+\usepackage{setspace}
+\usepackage{booktabs}
+\usepackage{dcolumn}
+\usepackage{rotating}
+%\usepackage{color,soul}
+\usepackage{threeparttable}
+\usepackage[capposition=top]{floatrow}
+\usepackage[labelsep=period]{caption}
+\usepackage[spanish]{babel}
+\usepackage{subcaption}
+\usepackage{lscape}
+\usepackage{pdflscape}
+\usepackage{multicol}
+\usepackage[bottom]{footmisc}
+\setlength\footnotemargin{5pt}
+\usepackage{longtable} %for long tables
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage{units}  %nicefraction
+\usepackage{placeins}
+\usepackage{booktabs,multirow} 
+%% BibTeX settings
+\usepackage{natbib}
+\bibliographystyle{apalike}
+%\bibliographystyle{unsrtnat}
+\bibpunct{(}{)}{,}{a}{,}{,}
+
+
+%% paragraph formatting
+\renewcommand{\baselinestretch}{1}
+
+
+% Defines columns for tables
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\usepackage{comment} %to comment entire sections
+
+
+
+\usepackage{bbold} %for indicators
+
+\setcounter{secnumdepth}{6}  %To get paragraphs referenced 
+
+\usepackage{titlesec} %subsection smaller
+\titleformat*{\subsection}{\normalsize \bfseries} %subsection smaller
+%\usepackage[raggedright]{titlesec} % for sections does not hyphen words
+
+
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue,citecolor=blue]{hyperref}  %Load last
+%% markup commands for code/software
+\let\code=\texttt
+\let\pkg=\textbf
+\let\proglang=\textsf
+\newcommand{\file}[1]{`\code{#1}'}
+\newcommand{\email}[1]{\href{mailto:#1}{\normalfont\texttt{#1}}}
+\urlstyle{same}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     			TITLE, AUTHORS AND DATE    			  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Title, authors and date
+
+\title{PS1 - Equipo 03}
+
+\author{Catalina Leal Rojas, Lucas Daniel Carrillo Aguirre, Lucas Eduardo Veras Costa} 
+\date{\today}
+
+\begin{document}
+
+
+\maketitle
+
+\thispagestyle{empty} % Leaves first page without page number
+
+%
+
+El link del repositorio es: \url{https://github.com/mbastol06/PS1_Equipo3}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    DOCUMENT    		          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\section{Introducción} \label{sec:intro}
+
+
+
+\section{Datos} \label{sec:datos}
+Los datos empleados en este análisis provienen del DANE y de la misión para el ``Empalme de las Series de Empleo, Pobreza y Desigualdad - MESE''. En el repositorio \textit{Kaggle} se encuentran cuatro conjuntos de datos divididos en muestras de entrenamiento y de prueba, tanto a nivel de hogar como a nivel individual. En ambos casos, es posible vincular las bases de hogar y persona mediante la variable $id$. Como la herramienta de \textit{GitHub} en su versión más básica no nos permite trabajar simultaneamente con los 4 archivos - debido a que su tamaño ultrapasa los 45MB - cada persona dek grupo descargó los datos en su computadora local.  
+
+Varias de las variables contenidas en el conjunto de prueba conservan los mismos códigos utilizados en la encuesta original del DANE. Por esta razón, se realizó una consulta al diccionario de la encuesta y se modificaron los nombres de las variables con el fin de hacerlos más interpretables, facilitando así el proceso de análisis.  
+
+Es importante señalar que las variables incluidas en el conjunto de datos de entrenamiento no coinciden completamente con las del conjunto de prueba. Dado que únicamente pueden emplearse como predictores las variables presentes en el conjunto de prueba, se procedió a eliminar del conjunto de entrenamiento aquellas variables que no se encuentran disponibles en el conjunto de prueba.
+
+En el conjunto de datos individuales se optó por no usar las variables relacionados a ingreso una vez que las mismas contienen una gran cantidad de datos no disponibles. Por ejemplo, para la variable que indicar el ingreso neto mensual no hay datos disponible para alrededor de 80\% para los individuos de la muestra. Sin embargo, nos parece relevante incluir si el jefe del hogar está ocupado o no pues es intuitivo pensar que en hogares pobres hay más chance que el jefe de hogar esté desempleado.
+
+
+\section{Modelos y Resultados}
+
+
+\section{Conclusiones}
+
+\section{Anexos}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%		  References				  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagebreak
+\singlespacing
+\bibliography{References.bib}
+\pagebreak
+
+\end{document}
