@@ -30,8 +30,8 @@ ctrl <- trainControl(
   classProbs = TRUE,         # Calcular probabilidades
   summaryFunction = fiveStats,
   savePredictions = TRUE,    # Guardar predicciones para calibrar el umbral
-  sampling = "down"
-  )
+  sampling = "up"
+)
 
 # === Entrenamiento del modelo CART (rpart) ===
 set.seed(2025)
@@ -101,4 +101,4 @@ predictSample <- predictSample |>
   select(id, pobre) 
 
 # === Exportar resultados ===
-write.csv(predictSample, "stores/modelos/rpart.csv", row.names = FALSE)
+write.csv(predictSample, "stores/modelos/rpart_up.csv", row.names = FALSE)

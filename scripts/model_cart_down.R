@@ -41,9 +41,9 @@ model1 <- train(
   method = "rpart",          # Árbol de decisión
   metric = "F",              # Usar F1-score como métrica de selección
   trControl = ctrl,
-  tuneGrid = expand.grid(cp = seq(0.001707763, 0.001707765, length.out = 100)  # Parámetro de complejidad (poda)
+  tuneGrid = expand.grid(cp = seq(0.0001, 0.05, length.out = 50))  # Parámetro de complejidad (poda)
   )
-)
+
 
 # Mostrar el mejor parámetro
 cat("=== Mejor parámetro cp encontrado:", model1$bestTune$cp, "===\n")
@@ -101,4 +101,4 @@ predictSample <- predictSample |>
   select(id, pobre) 
 
 # === Exportar resultados ===
-write.csv(predictSample, "stores/modelos/rpart.csv", row.names = FALSE)
+write.csv(predictSample, "stores/modelos/rpart_down.csv", row.names = FALSE)

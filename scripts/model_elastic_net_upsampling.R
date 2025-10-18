@@ -6,7 +6,7 @@ require("pacman")
 p_load(
   tidyverse, 
   caret,
-  rpart,       # Árbol de clasificación
+  glmnet,       # Elastic Net
   MLmetrics, 
   Metrics
 )
@@ -21,35 +21,35 @@ train <- train %>% na.omit()
 # Asegurar que la variable objetivo sea factor con niveles consistentes
 train$Pobre <- factor(train$Pobre, levels = c("No", "Yes"))
 
-# === Configuración de la validación cruzada con DOWNSAMPLING ===
-fiveStats <- function(...)  c(prSummary(...))  
+# === Configuración de la validación cruzada con UPSAMPLING ===
+fiveStats <- function(...) c(prSummary(...))
 
 ctrl <- trainControl(
   method = "cv",             # Validación cruzada
   number = 5,                # 5 pliegues
   classProbs = TRUE,         # Calcular probabilidades
   summaryFunction = fiveStats,
-  savePredictions = TRUE,    # Guardar predicciones para calibrar el umbral
-  sampling = "down"
-  )
+  savePredictions = TRUE,    # Guardar predicciones para calibración
+  sampling = "down"            # <-- Upsampling de la clase minoritaria
+)
 
-# === Entrenamiento del modelo CART (rpart) ===
+# === Entrenamiento del modelo Elastic Net ===
 set.seed(2025)
-model1 <- train(
-  Pobre ~ .,                
+model_elnet <- train(
+  Pobre ~ ., 
   data = train,
-  method = "rpart",          # Árbol de decisión
-  metric = "F",              # Usar F1-score como métrica de selección
+  method = "glmnet",
+  family = "binomial",
+  metric = "F",
   trControl = ctrl,
-  tuneGrid = expand.grid(cp = seq(0.001707763, 0.001707765, length.out = 100)  # Parámetro de complejidad (poda)
+  tuneGrid = expand.grid(
+    alpha = seq(0, 1, by = 0.1),  # Mezcla entre Ridge (0) y Lasso (1)
+    lambda = 10^seq(-4, 1, length = 20) # Penalización
   )
 )
 
-# Mostrar el mejor parámetro
-cat("=== Mejor parámetro cp encontrado:", model1$bestTune$cp, "===\n")
-
 # === Calibración del umbral (p) mediante validación cruzada ===
-pred_cv <- model1$pred %>%
+pred_cv <- model_elnet$pred %>%
   mutate(obs = factor(obs, levels = c("No", "Yes")))
 
 # Definir secuencia de umbrales posibles
@@ -68,11 +68,9 @@ cat("=== Umbral óptimo (p) encontrado:", best_p, "===\n")
 # Gráfico opcional de calibración
 plot(thresholds, f1_scores, type = "l", lwd = 2,
      xlab = "Umbral (p)", ylab = "F1-score",
-     main = "Calibración del Umbral")
+     main = "Calibración del Umbral - Elastic Net")
 
 # === Predicciones finales en el conjunto de test ===
-
-# Identificar observaciones con NA
 prob <- test[which(!complete.cases(test)),]
 id_prob <- prob$id
 
@@ -80,7 +78,7 @@ id_prob <- prob$id
 test <- test %>% na.omit()
 
 # Predecir probabilidades
-pred_probs <- predict(model1, newdata = test, type = "prob")
+pred_probs <- predict(model_elnet, newdata = test, type = "prob")
 
 # Clasificar según el umbral calibrado
 predictSample <- test %>%
@@ -101,4 +99,4 @@ predictSample <- predictSample |>
   select(id, pobre) 
 
 # === Exportar resultados ===
-write.csv(predictSample, "stores/modelos/rpart.csv", row.names = FALSE)
+write.csv(predictSample, "stores/modelos/elastic_net_downsampling.csv", row.names = FALSE)
