@@ -60,7 +60,7 @@ roc_obj   <- roc(response = train$Pobre, predictor = prob_train_boost)
 cut_best  <- coords(roc_obj, "best", ret = "threshold")
 
 predict_test_final <- predictSample %>% 
-  mutate(pobre = ifelse(pobre_lab >= 0.2692161, 1, 0)) |>
+  mutate(pobre = ifelse(pobre_lab >= , 1, 0)) |>
   select(-pobre_lab)
 
 write.csv(predict_test_final,
