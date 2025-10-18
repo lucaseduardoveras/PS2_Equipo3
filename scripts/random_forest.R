@@ -100,17 +100,19 @@ rf_final <- train(
   metric = "ROC"
 )
 
-# === 7.1) NUEVO: Umbral óptimo (ROC y F1) a partir del CV =========
-# Curva ROC con predicciones out-of-fold guardadas por caret
+# 8) Umbral óptimo (ROC y F1) a partir del CV
+
+# ROC
+
 roc_obj <- roc(response = rf_fit_cv$pred$obs,
                predictor = rf_fit_cv$pred$Yes,
                levels = c("No", "Yes"),
                direction = "<")
 
-# "best" = maximiza sensibilidad + especificidad (Youden)
 best_thr_roc <- as.numeric(coords(roc_obj, "best", ret = "threshold", transpose = FALSE))
 
-# Alternativa: umbral que maximiza F1 (para Kaggle con métrica F1)
+# F1
+
 thresholds <- seq(0.05, 0.95, by = 0.01)
 f1_scores <- sapply(thresholds, function(t) {
   preds_bin <- ifelse(rf_fit_cv$pred$Yes >= t, "Yes", "No")
@@ -118,13 +120,14 @@ f1_scores <- sapply(thresholds, function(t) {
 })
 best_thr_f1 <- thresholds[which.max(f1_scores)]
 
-# Selecciona el que usarás en test (dejo F1 por ser la métrica oficial)
-threshold_final <- best_thr_f1
+# Se selecciona alguno de los dos
+
+threshold_final <- best_thr_roc
 cat("\nUmbral óptimo ROC:", round(best_thr_roc, 4),
     " | Umbral óptimo F1:", round(best_thr_f1, 4),
     " | F1(CV) máx:", round(max(f1_scores), 3), "\n")
 
-# 8) Importancia de variables
+# 9) Importancia de variables
 dir.create("rf_outputs", showWarnings = FALSE)
 var_imp <- varImp(rf_final, scale = TRUE)
 
@@ -135,32 +138,20 @@ imp_tbl <- var_imp$importance %>%
 
 write_csv(imp_tbl, "rf_outputs/variable_importance_top30.csv")
 
-# 9) Se hace un output con la predicción para la competencia en Kaggle
+# 10) Se hace un output con la predicción
 
 id_col <- if ("id" %in% names(test)) "id" else if ("Id" %in% names(test)) "Id" else NA
 if (is.na(id_col)) stop("No hay ID")
 
-# Probabilidades y clases
-
 pred_prob <- predict(rf_final, newdata = test[, x_names], type = "prob")[, "Yes"]
 
-# === NUEVO: usar el umbral elegido (threshold_final) ===
 pred_bin  <- ifelse(pred_prob >= threshold_final, 1, 0)
-
-# Se crea la tabla final
 
 submission <- tibble(
   id = test[[id_col]],
   pobre = pred_bin
 )
 
-# (opcional) nombre con hiperparámetros y umbral
-file_name <- sprintf("RF_mtry_%s_ntree_1000_thr_%.3f.csv", best_mtry, threshold_final)
+file_name <- sprintf("RF_mtry_%s_ntree_1000_thr_%.3f_ROC.csv", best_mtry, threshold_final)
 
-# 10) Resumen en consola
-
-cat("==== Random Forest (estilo clase) ====\n")
-cat("Mejor mtry (CV):", best_mtry, "\n")
-print(rf_fit_cv$results %>% arrange(desc(ROC)) %>% head(4))
-cat("\nAUC-ROC (final CV):", max(rf_final$results$ROC), "\n")
-cat("Archivos guardados en rf_outputs/\n")
+write_csv(submission, file.path("rf_outputs", file_name))
