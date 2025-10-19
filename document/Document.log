@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.8.29)  18 OCT 2025 18:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.8.29)  19 OCT 2025 08:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -830,17 +830,20 @@ L3 programming layer <2025-05-26>
  ***********
 
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+Package rerunfilecheck Warning: File `Document.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
 
-Package rerunfilecheck Info: File `Document.out' has not changed.
-(rerunfilecheck)             Checksum: 92E7C4C3BC4A9C2CA8FE083FABE36ABD;499.
+Package rerunfilecheck Info: Checksums for `Document.out':
+(rerunfilecheck)             Before: 92E7C4C3BC4A9C2CA8FE083FABE36ABD;499
+(rerunfilecheck)             After:  4B56D31C5D5A177382A827EBB0A114A0;1156.
  ) 
 Here is how much of TeX's memory you used:
- 16068 strings out of 468219
- 253713 string characters out of 5442933
+ 16079 strings out of 468219
+ 253903 string characters out of 5442933
  700730 words of memory out of 5000000
- 44329 multiletter control sequences out of 15000+600000
- 634326 words of font info for 68 fonts, out of 8000000 for 9000
+ 44335 multiletter control sequences out of 15000+600000
+ 634633 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,11n,79p,870b,470s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Progra
@@ -848,11 +851,12 @@ m Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Program Files/MiKTe
 X/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Files/MiKTeX/fonts/type
 1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsf
 onts/cm/cmr17.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.
-pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Prog
-ram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti8.pfb>
-Output written on Document.pdf (7 pages, 129217 bytes).
+pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Prog
+ram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files/Mi
+KTeX/fonts/type1/public/amsfonts/cm/cmti8.pfb>
+Output written on Document.pdf (7 pages, 146318 bytes).
 PDF statistics:
- 105 PDF objects out of 1000 (max. 8388607)
- 14 named destinations out of 1000 (max. 500000)
+ 116 PDF objects out of 1000 (max. 8388607)
+ 19 named destinations out of 1000 (max. 500000)
  41 words of extra memory for PDF output out of 10000 (max. 10000000)
 

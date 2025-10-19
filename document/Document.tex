@@ -158,7 +158,44 @@ Llevando en cuenta el porcesamiento de los datos, la próxima sección describe 
 
 
 \section{Modelos y Resultados}
+En esta sección describimos los modelos utilizados para las predicciones y el modelo que alcanzó el mejor desempeño. 
+Las estimaciones se realizaron empleando los siguientes algoritmos de clasificación: 
+\textbf{Regresión Logit}, \textbf{Naive Bayes}, \textbf{Random Forest}, \textbf{CART}, \textbf{Elastic Net} y \textbf{Boosting}. 
 
+Para cada modelo, con excepción de la Regresión Logit, se calibraron los \textit{hiperparámetros} mediante 
+\textit{validación cruzada de cinco pliegues} (\textit{five-fold cross-validation}). 
+Dado que la métrica utilizada para evaluar las predicciones en la competencia es la \textbf{estadística F}, 
+optamos por emplearla también como criterio de desempeño durante la calibración. 
+
+La \textbf{estadística F}, o \textit{F1-score}, se define como la media armónica entre la \textit{precisión} 
+(\textit{precision}) y la \textit{sensibilidad} (\textit{recall}), cuya fórmula es la siguiente:
+
+\begin{equation}
+F_1 = 2 \cdot \frac{\text{Precisión} \cdot \text{Sensibilidad}}{\text{Precisión} + \text{Sensibilidad}}
+\end{equation}
+
+donde:
+\begin{equation}
+\text{Precisión} = \frac{TP}{TP + FP}, \qquad 
+\text{Sensibilidad} = \frac{TP}{TP + FN}
+\end{equation}
+
+y \(TP\), \(FP\) y \(FN\) representan, respectivamente, los verdaderos positivos, falsos positivos y falsos negativos. 
+
+Cabe señalar que los datos de entrenamiento presentan un \textbf{fuerte desbalance de clases}, 
+lo cual tiende a sesgar los modelos hacia la clase más frecuente, afectando negativamente la predicción 
+de la clase minoritaria —en este caso, los hogares pobres. 
+Para mitigar este problema, aplicamos \textit{técnicas de remuestreo} (tanto \textit{oversampling} como \textit{undersampling}) 
+en cada modelo. 
+
+Adicionalmente, el \textbf{umbral de corte} en la probabilidad estimada \(p\), que usualmente se fija en 0.5 por convención, 
+fue \textbf{recalibrado} para maximizar la métrica \(F_1\) en cada modelo.
+
+\subsection{Selección del Modelo y Entrenamiento}
+
+\subsection{Calibración de los Hiperparámetros}
+
+\subsection{Análisis Comparativa}
 
 \section{Conclusiones}
 
