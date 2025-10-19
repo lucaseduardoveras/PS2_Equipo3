@@ -49,6 +49,19 @@ cv_bagging <- train(
 cv_bagging
 cv_bagging$finalModel
 
+#gráfico de la importancia de las variables
+imp <- varImp(cv_bagging)$importance
+imp$Variable <- rownames(imp)
+
+imp %>%
+  top_n(20, Overall) %>%
+  ggplot(aes(x = reorder(Variable, Overall), y = Overall)) +
+  geom_col(fill = "#0072B2") +
+  coord_flip() +
+  labs(title = "Top 15 variables más importantes", x = "", y = "Importancia") +
+  theme_minimal()
+
+#Predicciones
 prob_train <- train |>
   mutate(pobre_lab = predict(cv_bagging, newdata = train, type="prob"))
 
