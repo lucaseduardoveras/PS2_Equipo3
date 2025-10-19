@@ -1,3 +1,4 @@
+rm(list=ls())
 #Cargar librerías 
 require("pacman")
 p_load(
@@ -23,30 +24,30 @@ ctrl<- trainControl(method = "cv",
                     summaryFunction = fiveStats,
                     classProbs = TRUE,
                     verbose=FALSE,
-                    savePredictions = TRUE,
-                    sampling = "down")
+                    savePredictions = TRUE)
 
-adagrid <- expand.grid(mfinal = c(250, 500, 1000),
-                       maxdepth = c(1,5,15,50),
-                       coeflearn = c('Breiman','Freund'))
+grid_gbm <- expand.grid(n.trees= c(50, 100,150),
+                        interaction.depth=c(2,5,7),
+                        shrinkage=c(0.01, 0.001),
+                        n.minobsinnode=c(5, 10))
 
 set.seed(2025) 
 
-adaboost_tree <- train(
+gbm_tree <- train(
   Pobre ~.,
   data = train, 
-  method = "AdaBoost.M1",  # para implementar el algoritmo antes descrito
+  method = "gbm", 
   trControl = ctrl,
-  metric = "F",
-  tuneGrid = adagrid
-)
-adaboost_tree
+  tuneGrid=grid_gbm,
+  metric = "F"
+)    
+gbm_tree
 
 prob_train <- train |>
-  mutate(pobre_lab = predict(adaboost_tree, newdata = train, type="prob"))
+  mutate(pobre_lab = predict(gbm_tree, newdata = train, type="prob"))
 
 #USO DE CURVA ROC PARA ENCONTRAR REGLA DE DECISIÓN ÓPTIMA
-prob_train_boost <- predict(adaboost_tree, newdata = train, type="prob")
+prob_train_boost <- predict(gbm_tree, newdata = train, type="prob")
 
 library(pROC)
 roc_obj   <- roc(response = train$Pobre, predictor = prob_train_boost$Yes)
@@ -54,13 +55,13 @@ cut_best  <- coords(roc_obj, "best", ret = "threshold")
 
 # Predecir probabilidades
 test_na <- test %>% na.omit()
-pred_probs <- predict(adaboost_tree, newdata = test_na, type = "prob")
+pred_probs <- predict(gbm_tree, newdata = test_na, type = "prob")
 
 # Clasificar según el umbral calibrado
 predictSample <- test_na %>%
   mutate(
     pobre_prob = pred_probs$Yes,
-    pobre_lab  = if_else(pobre_prob >= 0.525334, "Yes", "No")
+    pobre_lab  = if_else(pobre_prob >= 0.1855536, "Yes", "No")
   ) %>%
   select(id, pobre_lab)
 
@@ -68,4 +69,4 @@ predictSample <- predictSample |>
   mutate(pobre = ifelse(pobre_lab == "Yes", 1, 0)) |>
   select(id, pobre) 
 
-write.csv(predictSample, "RF_mtry_26_node_50_ntree_500_thr_0.522.csv", row.names = FALSE)
+write.csv(predictSample, "GBM_ntree_150_depth_7_shri_0.01_node_5.csv", row.names = FALSE)
