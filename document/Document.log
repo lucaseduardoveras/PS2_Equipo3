@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.9.7)  19 OCT 2025 10:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.9.7)  19 OCT 2025 15:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -780,6 +780,16 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {C:/Users/lukaz/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
+Underfull \hbox (badness 10000) in paragraph at lines 107--108
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--110
+
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 111--112
 
  []
@@ -795,12 +805,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 115--116
  []
 
 
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.116 
+       [1]
 Underfull \hbox (badness 10000) in paragraph at lines 117--118
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 119--120
 
  []
 
@@ -810,12 +821,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 121--122
  []
 
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.122 
-       [1]
 Underfull \hbox (badness 10000) in paragraph at lines 123--124
 
  []
@@ -830,7 +835,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 127--128
 
  []
 
-
+[2]
 Underfull \hbox (badness 10000) in paragraph at lines 129--130
 
  []
@@ -845,7 +850,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 133--134
 
  []
 
-[2]
+
 Underfull \hbox (badness 10000) in paragraph at lines 135--136
 
  []
@@ -861,17 +866,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 139--140
  []
 
 
-Overfull \hbox (4.14886pt too wide) in paragraph at lines 141--142
-[]\OT1/cmr/m/n/12 El Cua-dro [][]1[][] pre-sen-ta las es-tad^^S^^Psti-cas des-c
-rip-ti-vas (me-dia, me-dia-na y des-via-ci^^Son est^^Sandar)
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 141--142
 
  []
 
-
+[3]
 Underfull \hbox (badness 10000) in paragraph at lines 143--144
 
  []
@@ -881,7 +880,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 145--146
 
  []
 
-[3]
+
 Underfull \hbox (badness 10000) in paragraph at lines 147--148
 
  []
@@ -892,43 +891,72 @@ Underfull \hbox (badness 10000) in paragraph at lines 149--150
  []
 
 
+Overfull \hbox (4.14886pt too wide) in paragraph at lines 151--152
+[]\OT1/cmr/m/n/12 El Cua-dro [][]1[][] pre-sen-ta las es-tad^^S^^Psti-cas des-c
+rip-ti-vas (me-dia, me-dia-na y des-via-ci^^Son est^^Sandar)
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 151--152
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 155--158
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 159--163
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 175--176
-
- []
-
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 177--178
+Underfull \hbox (badness 10000) in paragraph at lines 153--154
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 179--184
+Underfull \hbox (badness 10000) in paragraph at lines 155--156
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 185--187
+Underfull \hbox (badness 10000) in paragraph at lines 157--158
 
  []
 
-[5] [6]
-No file Document.bbl.
-[7] (Document.aux
+
+Underfull \hbox (badness 10000) in paragraph at lines 159--160
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 161--162
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 165--168
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 169--173
+
+ []
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 185--186
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 187--188
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 189--194
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 195--197
+
+ []
+
+[6] [7] (Document.bbl) [8] (Document.aux
 LaTeX Info: Redefining \. on input line 12.
 LaTeX Info: Redefining \% on input line 12.
 )
@@ -940,13 +968,13 @@ Package rerunfilecheck Info: File `Document.out' has not changed.
 (rerunfilecheck)             Checksum: 4B56D31C5D5A177382A827EBB0A114A0;1156.
  ) 
 Here is how much of TeX's memory you used:
- 15994 strings out of 474486
- 253094 string characters out of 5753571
+ 16014 strings out of 474486
+ 253568 string characters out of 5753571
  1948542 words of memory out of 5000000
- 37994 multiletter control sequences out of 15000+600000
+ 38007 multiletter control sequences out of 15000+600000
  565877 words of font info for 65 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,11n,79p,872b,458s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,11n,79p,872b,464s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Progra
 m Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Program Files/MiKTe
 X/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Files/MiKTeX/fonts/type
@@ -955,9 +983,9 @@ onts/cm/cmr17.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.
 pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Prog
 ram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files/Mi
 KTeX/fonts/type1/public/amsfonts/cm/cmti8.pfb>
-Output written on Document.pdf (8 pages, 148878 bytes).
+Output written on Document.pdf (9 pages, 157496 bytes).
 PDF statistics:
- 129 PDF objects out of 1000 (max. 8388607)
- 20 named destinations out of 1000 (max. 500000)
+ 147 PDF objects out of 1000 (max. 8388607)
+ 24 named destinations out of 1000 (max. 500000)
  65 words of extra memory for PDF output out of 10000 (max. 10000000)
 
