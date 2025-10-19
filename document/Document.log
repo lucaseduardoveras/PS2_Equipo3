@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.9.7)  19 OCT 2025 15:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.9.7)  19 OCT 2025 15:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -661,6 +661,10 @@ File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 (Document.aux
 LaTeX Info: Redefining \. on input line 12.
 LaTeX Info: Redefining \% on input line 12.
+
+
+LaTeX Warning: Label `sec:intro' multiply defined.
+
 )
 \openout1 = `Document.aux'.
 
@@ -785,14 +789,26 @@ Underfull \hbox (badness 10000) in paragraph at lines 107--108
  []
 
 
+Package natbib Warning: Citation `dnp2021sisben' on page 1 undefined on input l
+ine 109.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 109--110
 
  []
 
 
+Package natbib Warning: Citation `bottia2008sisben' on page 1 undefined on inpu
+t line 111.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 111--112
 
  []
+
+
+Package natbib Warning: Citation `dane2018pobreza' on page 1 undefined on input
+ line 113.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 113--114
@@ -816,147 +832,54 @@ Underfull \hbox (badness 10000) in paragraph at lines 117--118
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 121--122
+Package natbib Warning: Citation `DANE2018' on page 2 undefined on input line 1
+22.
 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 123--124
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 125--126
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 127--128
-
- []
-
-[2]
-Underfull \hbox (badness 10000) in paragraph at lines 129--130
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 131--132
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 133--134
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 135--136
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 137--138
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 139--140
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 141--142
-
- []
-
-[3]
-Underfull \hbox (badness 10000) in paragraph at lines 143--144
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 145--146
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 147--148
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 149--150
-
- []
-
-
-Overfull \hbox (4.14886pt too wide) in paragraph at lines 151--152
+[2] [3]
+Overfull \hbox (4.14886pt too wide) in paragraph at lines 159--160
 []\OT1/cmr/m/n/12 El Cua-dro [][]1[][] pre-sen-ta las es-tad^^S^^Psti-cas des-c
 rip-ti-vas (me-dia, me-dia-na y des-via-ci^^Son est^^Sandar)
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 151--152
-
- []
-
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 153--154
+Underfull \hbox (badness 10000) in paragraph at lines 173--176
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--156
+Underfull \hbox (badness 10000) in paragraph at lines 177--181
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 157--158
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 159--160
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 161--162
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 165--168
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 169--173
+Underfull \hbox (badness 10000) in paragraph at lines 193--194
 
  []
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 185--186
+Underfull \hbox (badness 10000) in paragraph at lines 195--196
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 187--188
+Underfull \hbox (badness 10000) in paragraph at lines 197--202
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 189--194
+Underfull \hbox (badness 10000) in paragraph at lines 203--205
 
  []
 
+[6] [7] (Document.bbl
 
-Underfull \hbox (badness 10000) in paragraph at lines 195--197
+Package natbib Warning: Empty `thebibliography' environment on input line 3.
 
- []
+) [8]
 
-[6] [7] (Document.bbl) [8] (Document.aux
+Package natbib Warning: There were undefined citations.
+
+(Document.aux
 LaTeX Info: Redefining \. on input line 12.
 LaTeX Info: Redefining \% on input line 12.
 )
@@ -964,28 +887,55 @@ LaTeX Info: Redefining \% on input line 12.
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
-Package rerunfilecheck Info: File `Document.out' has not changed.
-(rerunfilecheck)             Checksum: 4B56D31C5D5A177382A827EBB0A114A0;1156.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+
+Package rerunfilecheck Warning: File `Document.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `Document.out':
+(rerunfilecheck)             Before: D510716F7877C0EF2F5E9E72B4B82991;1262
+(rerunfilecheck)             After:  4B56D31C5D5A177382A827EBB0A114A0;1156.
  ) 
 Here is how much of TeX's memory you used:
- 16014 strings out of 474486
- 253568 string characters out of 5753571
+ 16009 strings out of 474486
+ 253382 string characters out of 5753571
  1948542 words of memory out of 5000000
- 38007 multiletter control sequences out of 15000+600000
- 565877 words of font info for 65 fonts, out of 8000000 for 9000
+ 38000 multiletter control sequences out of 15000+600000
+ 566046 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,11n,79p,872b,464s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Progra
-m Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Program Files/MiKTe
-X/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Files/MiKTeX/fonts/type
-1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsf
-onts/cm/cmr17.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.
-pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Prog
-ram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files/Mi
-KTeX/fonts/type1/public/amsfonts/cm/cmti8.pfb>
-Output written on Document.pdf (9 pages, 157496 bytes).
+ 75i,11n,79p,951b,462s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+pdfTeX warning (dest): name{section.6} has been referenced but does not exist, 
+replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.4.3} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.4.2} has been referenced but does not ex
+ist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection.4.1} has been referenced but does not ex
+ist, replaced by a fixed one
+
+<C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program 
+Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Program Files/MiKTeX/
+fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Files/MiKTeX/fonts/type1/
+public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfon
+ts/cm/cmr17.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pf
+b><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Progra
+m Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files/MiKT
+eX/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Program Files/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmtt12.pfb>
+Output written on Document.pdf (9 pages, 161372 bytes).
 PDF statistics:
  147 PDF objects out of 1000 (max. 8388607)
- 24 named destinations out of 1000 (max. 500000)
- 65 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 25 named destinations out of 1000 (max. 500000)
+ 73 words of extra memory for PDF output out of 10000 (max. 10000000)
 
