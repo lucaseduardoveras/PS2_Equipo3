@@ -109,3 +109,42 @@ stargazer(fact_nopobre,
           summary.stat = c("mean"),
           title = "Promedios de variables categóricas NoPobres")
 
+#===Diferencia de medias===#
+library(dplyr)
+library(broom)
+library(purrr)
+library(kableExtra)
+
+# Variables a comparar
+train$Pobre <- ifelse(train$Pobre %in% c("Sí", "Si", "YES", "Yes", "Pobre"), 1, 0)
+vars <- train %>% select(-Pobre) %>% select(where(is.numeric)) %>% names()
+
+# Tabla de diferencias de medias
+diff_means <- vars %>%
+  map_dfr(~ {
+    var <- .x
+    ttest <- t.test(train[[var]] ~ train$Pobre)
+    tibble(
+      Variable = var,
+      Media_Pobre = mean(train[[var]][train$Pobre == 1], na.rm = TRUE),
+      Media_NoPobre = mean(train[[var]][train$Pobre == 0], na.rm = TRUE),
+      Diferencia = diff(ttest$estimate),   # Pobre - No pobre
+      t = unname(ttest$statistic),
+      p_valor = ttest$p.value
+    )
+  }) %>%
+  mutate(Signif = case_when(
+    p_valor < 0.01 ~ "***",
+    p_valor < 0.05 ~ "**",
+    p_valor < 0.1  ~ "*",
+    TRUE ~ ""
+  ))
+
+# Mostramos la tabla en R
+diff_means %>%
+  mutate(across(c(Media_Pobre, Media_NoPobre, Diferencia, t, p_valor), round, 3)) %>%
+  kbl(caption = "Diferencia de medias entre hogares pobres y no pobres") %>%
+  kable_styling(full_width = FALSE)
+
+write.csv(diff_means, "diferencias_medias.csv", row.names = FALSE)
+
