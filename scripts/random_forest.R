@@ -136,7 +136,7 @@ imp_tbl <- var_imp$importance %>%
   arrange(desc(Overall)) %>%
   slice(1:30)
 
-write_csv(imp_tbl, "rf_outputs/variable_importance_top30.csv")
+write_csv(imp_tbl, "stores/modelos/variable_importance_top30.csv")
 
 # 10) Se hace un output con la predicción
 
@@ -154,4 +154,4 @@ submission <- tibble(
 
 file_name <- sprintf("RF_mtry_%s_ntree_1000_thr_%.3f_ROC.csv", best_mtry, threshold_final)
 
-write_csv(submission, file.path("rf_outputs", file_name))
+write_csv(submission, file.path("stores/modelos", file_name))
