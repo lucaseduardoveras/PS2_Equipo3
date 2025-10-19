@@ -108,7 +108,14 @@ El link del repositorio es: \url{https://github.com/lucaseduardoveras/PS2_Equipo
 
 
 \section{Datos} \label{sec:datos}
-Los datos empleados en este análisis provienen del DANE y de la misión para el ``Empalme de las Series de Empleo, Pobreza y Desigualdad - MESE''. En el repositorio \textit{Kaggle} se encuentran cuatro conjuntos de datos divididos en muestras de entrenamiento y de prueba, tanto a nivel de hogar como individual. En ambos casos, las bases pueden vincularse mediante la variable $id$.\\
+Los datos empleados en este análisis provienen de la \textit{Medición de Pobreza Monetaria y Desigualdad 2018}, elaborada por el \textit{Departamento Administrativo Nacional de Estadística (DANE)} en el marco de la misión para el \textit{Empalme de las Series de Empleo, Pobreza y Desigualdad (MESE)}. Esta iniciativa surgió con el propósito de unificar y armonizar las series de empleo, pobreza y desigualdad, fortaleciendo así la consistencia y credibilidad de los indicadores sobre calidad de vida en Colombia \citep{DANE2018}. Dada su amplitud y nivel de desagregación, esta fuente resulta especialmente adecuada para el objetivo de predecir la condición de pobreza de los hogares, pues contiene información socioeconómica detallada tanto a nivel individual como del hogar, incluyendo variables sobre ingresos, educación, ocupación, características de la vivienda y composición familiar. \\
+
+Para los fines de este trabajo, los datos fueron obtenidos a través de la plataforma \textit{Kaggle}, donde se desarrolla una competencia orientada a la predicción de pobreza. El conjunto se encuentra estructurado en cuatro archivos: a nivel de hogar e individual, y divididos en muestras de \textit{training} y \textit{testing}.
+
+
+ se dispone de cuatro conjuntos de datos derivados de esta fuente, divididos en muestras de entrenamiento y de prueba para ambos niveles de análisis. En todos los casos, las bases pueden vincularse mediante la variable identificadora \texttt{id}. \\
+
+
 
 Dado que la versión básica de \textit{GitHub} no permite trabajar simultáneamente con los cuatro archivos —debido a que su tamaño supera los 45 MB—, cada integrante del equipo descargó los datos en su computadora local. Varias de las variables del conjunto de prueba conservan los mismos códigos utilizados en la encuesta original del DANE. Por esta razón, se consultó el diccionario de la encuesta y se modificaron los nombres de las variables con el fin de hacerlos más interpretables y facilitar el proceso de análisis.\\
 
@@ -275,6 +282,14 @@ Universitaria & 0.261 & 0.544 \\
 \pagebreak
 \singlespacing
 \bibliography{References.bib}
+@misc{DANE2018,
+  author       = {Departamento Administrativo Nacional de Estadística (DANE)},
+  title        = {Medición de Pobreza Monetaria y Desigualdad 2018},
+  year         = {2018},
+  howpublished = {\url{https://microdatos.dane.gov.co/index.php/catalog/608/study-description}},
+  note         = {Accedido el 19 de octubre de 2025}
+}
+
 \pagebreak
 
 \end{document}
