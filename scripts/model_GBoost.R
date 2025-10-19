@@ -69,25 +69,4 @@ predictSample <- predictSample |>
   mutate(pobre = ifelse(pobre_lab == "Yes", 1, 0)) |>
   select(id, pobre) 
 
-# === Calibración del umbral (p) mediante validación cruzada con F1 ===
-pred_cv <- gbm_tree$pred %>%
-  mutate(obs = factor(obs, levels = c("No", "Yes")))
-
-# Definir secuencia de umbrales posibles
-thresholds <- seq(0.1, 0.9, by = 0.01)
-
-# Calcular F1-score para cada umbral
-f1_scores <- sapply(thresholds, function(t) {
-  preds <- ifelse(pred_cv$Yes >= t, "Yes", "No")
-  F1_Score(y_pred = preds, y_true = pred_cv$obs, positive = "Yes")
-})
-
-# Seleccionar el umbral óptimo
-best_p <- thresholds[which.max(f1_scores)]
-cat("=== Umbral óptimo (p) encontrado:", best_p, "===\n")
-
-write.csv(predictSample, "GBM_ntree_150_depth_7_shri_0.01_node_5.csv", row.names = FALSE)
-
-
-
 write.csv(predictSample, "GBM_ntree_150_depth_7_shri_0.01_node_5.csv", row.names = FALSE)
