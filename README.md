@@ -19,7 +19,6 @@ PS2_Equipo3/
 │   ├── train.csv           # Datos finales de entrenamiento (generados por data.R)
 │   ├── test.csv            # Datos finales de prueba
 │   ├── modelos/            # Archivos de predicciones de cada modelo
-│   └── raw/                # (opcional) Datos originales descargados localmente
 │
 ├── views/                  # Figuras y visualizaciones (e.g., curvas ROC)
 │
