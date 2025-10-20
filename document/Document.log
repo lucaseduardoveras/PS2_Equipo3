@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.9.7)  19 OCT 2025 23:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.9.7)  19 OCT 2025 23:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -966,11 +966,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 227--228
  []
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 229--230
-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 235--236
 
  []
@@ -986,17 +981,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 247--248
  []
 
 [8]
+Underfull \hbox (badness 10000) in paragraph at lines 251--252
+
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 253--254
 
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 255--256
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 257--258
 
  []
 
@@ -1016,36 +1011,60 @@ Underfull \hbox (badness 10000) in paragraph at lines 263--264
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 265--266
+
+ []
+
+
+LaTeX Warning: Reference `tab:resultados' on page 10 undefined on input line 26
+7.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 267--268
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 269--270
+Underfull \hbox (badness 10000) in paragraph at lines 270--271
 
  []
 
-[10] [11] [12]
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 273--274
 
-LaTeX Warning: File `ROC_NAIVE_BAYES.jpg' not found on input line 427.
+ []
 
 
-! Package pdftex.def Error: File `ROC_NAIVE_BAYES.jpg' not found: using draft s
-etting.
+Underfull \hbox (badness 10000) in paragraph at lines 275--276
 
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.427 ...width=0.8\textwidth]{ROC_NAIVE_BAYES.jpg}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 277--278
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 282--283
+
+ []
+
+[11]
+Underfull \hbox (badness 10000) in paragraph at lines 284--285
+
+ []
+
+[12] [13]
+<ROC_NAIVE_BAYES.jpg, id=109, 1580.90625pt x 956.57375pt>
+File: ROC_NAIVE_BAYES.jpg Graphic file (type jpg)
+<use ROC_NAIVE_BAYES.jpg>
+Package pdftex.def Info: ROC_NAIVE_BAYES.jpg  used on input line 440.
+(pdftex.def)             Requested size: 368.57838pt x 223.01413pt.
 
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.428 \caption{ROC_Naive}
+l.441 \caption{ROC_Naive}
                          
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -1053,7 +1072,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.428 \caption{ROC_Naive}
+l.441 \caption{ROC_Naive}
                          
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -1061,7 +1080,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.428 \caption{ROC_Naive}
+l.441 \caption{ROC_Naive}
                          
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -1069,16 +1088,15 @@ you left one out. Proceed, with fingers crossed.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.428 \caption{ROC_Naive}
+l.441 \caption{ROC_Naive}
                          
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
-[13] [14] [15]
 ! Undefined control sequence.
 <argument> ...rtpbox {\@nextchar }\insert@pcolumn 
                                                   \@endpbox \do@row@strut \o...
-l.490 \end{tabularx}
+l.503 \end{tabularx}
                     
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1089,7 +1107,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <argument> ...rtpbox {\@nextchar }\insert@pcolumn 
                                                   \@endpbox \do@row@strut \o...
-l.490 \end{tabularx}
+l.503 \end{tabularx}
                     
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1100,7 +1118,7 @@ and I'll forget about whatever was undefined.
 ! Missing # inserted in alignment preamble.
 <to be read again> 
                    &
-l.490 \end{tabularx}
+l.503 \end{tabularx}
                     
 There should be exactly one # between &'s, when an
 \halign or \valign is being set up. In this case you had
@@ -1109,7 +1127,7 @@ none, so I've put one in; maybe that will work.
 ! Missing # inserted in alignment preamble.
 <to be read again> 
                    &
-l.490 \end{tabularx}
+l.503 \end{tabularx}
                     
 There should be exactly one # between &'s, when an
 \halign or \valign is being set up. In this case you had
@@ -1118,12 +1136,12 @@ none, so I've put one in; maybe that will work.
 (C:\Program Files\MiKTeX\tex/latex/base\omscmr.fd)
 
 Package tabularx Warning: X Columns too narrow (table too wide)
-(tabularx)                 on input line 490.
+(tabularx)                 on input line 503.
 
 ! Undefined control sequence.
 <argument> ...rtpbox {\@nextchar }\insert@pcolumn 
                                                   \@endpbox \do@row@strut \o...
-l.490 \end{tabularx}
+l.503 \end{tabularx}
                     
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1134,7 +1152,7 @@ and I'll forget about whatever was undefined.
 ! Undefined control sequence.
 <argument> ...rtpbox {\@nextchar }\insert@pcolumn 
                                                   \@endpbox \do@row@strut \o...
-l.490 \end{tabularx}
+l.503 \end{tabularx}
                     
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1145,7 +1163,7 @@ and I'll forget about whatever was undefined.
 ! Missing # inserted in alignment preamble.
 <to be read again> 
                    &
-l.490 \end{tabularx}
+l.503 \end{tabularx}
                     
 There should be exactly one # between &'s, when an
 \halign or \valign is being set up. In this case you had
@@ -1154,55 +1172,33 @@ none, so I've put one in; maybe that will work.
 ! Missing # inserted in alignment preamble.
 <to be read again> 
                    &
-l.490 \end{tabularx}
+l.503 \end{tabularx}
                     
 There should be exactly one # between &'s, when an
 \halign or \valign is being set up. In this case you had
 none, so I've put one in; maybe that will work.
 
 
-Overfull \hbox (420.48907pt too wide) in alignment at lines 490--490
+Overfull \hbox (420.48907pt too wide) in alignment at lines 503--503
 [][][][] 
  []
 
-
-LaTeX Warning: File `importance.pdf' not found on input line 497.
-
-
-! Package pdftex.def Error: File `importance.pdf' not found: using draft settin
-g.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.497 ...hics[width=0.8\textwidth]{importance.pdf}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-[16]
-
-LaTeX Warning: File `importance_rf.jpg' not found on input line 504.
-
-
-! Package pdftex.def Error: File `importance_rf.jpg' not found: using draft set
-ting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.504 ...s[width=0.8\textwidth]{importance_rf.jpg}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-[17] [18] (Document.bbl
+[14 <./ROC_NAIVE_BAYES.jpg>] [15] [16]
+<importance.pdf, id=129, 523.9575pt x 246.9225pt>
+File: importance.pdf Graphic file (type pdf)
+<use importance.pdf>
+Package pdftex.def Info: importance.pdf  used on input line 510.
+(pdftex.def)             Requested size: 368.57838pt x 173.7036pt.
+<importance_rf.jpg, id=130, 651.93562pt x 382.42876pt>
+File: importance_rf.jpg Graphic file (type jpg)
+<use importance_rf.jpg>
+Package pdftex.def Info: importance_rf.jpg  used on input line 517.
+(pdftex.def)             Requested size: 368.57838pt x 216.21852pt.
+ [17 <./importance.pdf> <./importance_rf.jpg>] (Document.bbl
 
 Package natbib Warning: Empty `thebibliography' environment on input line 3.
 
-) [19]
+) [18]
 
 Package natbib Warning: There were undefined citations.
 
@@ -1214,14 +1210,18 @@ LaTeX Info: Redefining \% on input line 12.
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
+
+
+LaTeX Warning: There were undefined references.
+
 Package rerunfilecheck Info: File `Document.out' has not changed.
 (rerunfilecheck)             Checksum: 62085474F7390A2E48FFACC234CB01E3;1054.
  ) 
 Here is how much of TeX's memory you used:
- 16252 strings out of 474486
- 258159 string characters out of 5753571
- 1960542 words of memory out of 5000000
- 38214 multiletter control sequences out of 15000+600000
+ 16177 strings out of 474486
+ 256199 string characters out of 5753571
+ 1966542 words of memory out of 5000000
+ 38140 multiletter control sequences out of 15000+600000
  570358 words of font info for 81 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,13n,79p,1544b,577s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1242,9 +1242,9 @@ rogram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files
 /amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm
 /cmti12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
 
-Output written on Document.pdf (20 pages, 309781 bytes).
+Output written on Document.pdf (19 pages, 530253 bytes).
 PDF statistics:
- 236 PDF objects out of 1000 (max. 8388607)
- 39 named destinations out of 1000 (max. 500000)
- 57 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 240 PDF objects out of 1000 (max. 8388607)
+ 38 named destinations out of 1000 (max. 500000)
+ 72 words of extra memory for PDF output out of 10000 (max. 10000000)
 
