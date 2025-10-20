@@ -2,11 +2,10 @@
 setwd(dirname(dirname(rstudioapi::getActiveDocumentContext()$path)))
 
 # === Cargar paquetes ===
-require("pacman")
+library(pacman)
 p_load(
-  tidyverse, 
+  tidyverse,
   caret,
-  naivebayes,
   pROC
 )
 
@@ -15,36 +14,30 @@ train <- read_csv("stores/train.csv")
 train <- train %>% na.omit()
 train$Pobre <- factor(train$Pobre, levels = c("No", "Yes"))
 
-# === Función base para entrenar y obtener curva ROC ===
-entrenar_y_roc <- function(sampling_method = NULL, label) {
-  
-  fiveStats <- function(...) c(prSummary(...))
+# === Función para entrenar modelo logit y obtener curva ROC ===
+entrenar_y_roc_logit <- function(sampling_method = NULL, label) {
   
   ctrl <- trainControl(
     method = "cv",
     number = 5,
     classProbs = TRUE,
-    summaryFunction = fiveStats,
+    summaryFunction = twoClassSummary,
     savePredictions = TRUE,
-    sampling = sampling_method  # puede ser "up", "down" o NULL
+    sampling = sampling_method
   )
   
   set.seed(2025)
-  model <- train(
+  modelo <- train(
     Pobre ~ .,
     data = train,
-    method = "naive_bayes",
-    metric = "F",
-    trControl = ctrl,
-    tuneGrid = expand.grid(
-      usekernel = c(TRUE, FALSE),
-      laplace = c(0, 1),
-      adjust = 1
-    )
+    method = "glm",
+    family = binomial,
+    metric = "ROC",
+    trControl = ctrl
   )
   
-  # Extraer probabilidades y clases verdaderas
-  preds <- model$pred
+  preds <- modelo$pred
+  
   roc_obj <- roc(
     response = preds$obs,
     predictor = preds$Yes,
@@ -62,20 +55,20 @@ entrenar_y_roc <- function(sampling_method = NULL, label) {
   return(roc_df)
 }
 
-# === Entrenar los tres modelos ===
-roc_base <- entrenar_y_roc(NULL, "Sin muestreo")
-roc_up   <- entrenar_y_roc("up", "Upsampling")
-roc_down <- entrenar_y_roc("down", "Downsampling")
+# === Entrenar tres versiones del modelo ===
+roc_base <- entrenar_y_roc_logit(NULL, "Sin muestreo")
+roc_up   <- entrenar_y_roc_logit("up", "Upsampling")
+roc_down <- entrenar_y_roc_logit("down", "Downsampling")
 
 # === Combinar resultados ===
 roc_data <- bind_rows(roc_base, roc_up, roc_down)
 
-# === Gráfico comparativo de curvas ROC ===
+# === Crear figura comparativa ===
 fig_roc <- ggplot(roc_data, aes(x = FPR, y = TPR, color = Modelo)) +
   geom_line(size = 1.2) +
   geom_abline(linetype = "dashed", color = "gray50") +
   labs(
-    title = "Curvas ROC del modelo Naive Bayes con diferentes esquemas de muestreo",
+    title = "Curvas ROC del modelo Logit con diferentes esquemas de muestreo",
     x = "Tasa de Falsos Positivos (1 - Especificidad)",
     y = "Tasa de Verdaderos Positivos (Sensibilidad)",
     color = "Método"
@@ -83,9 +76,13 @@ fig_roc <- ggplot(roc_data, aes(x = FPR, y = TPR, color = Modelo)) +
   theme_minimal(base_size = 13) +
   theme(legend.position = "bottom")
 
-# === Calcular e imprimir AUC promedio ===
+# === Crear carpeta si no existe ===
+if (!dir.exists("figures")) dir.create("figures")
+
+# === Guardar figura ===
+ggsave("views/ROC_Logit_sampling.png", fig_roc, width = 8, height = 6, dpi = 300)
+
+# === Mostrar AUC promedio en consola ===
 roc_data %>%
   group_by(Modelo) %>%
   summarise(AUC = unique(AUC))
-
-ggsave("views/ROC_NaiveBayes_sampling.png", fig_roc, width = 8, height = 6, dpi = 300)
