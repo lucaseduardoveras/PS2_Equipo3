@@ -1,0 +1,4 @@
+Modelo,alpha,lambda,AUC
+Sin muestreo,1,3.359818286283781e-4,0.803
+Upsampling,0.1,10,0.813
+Downsampling,0.1,10,0.813
