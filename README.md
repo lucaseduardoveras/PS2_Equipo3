@@ -86,13 +86,10 @@ Antes de ejecutar cualquier script, asegúrese de contar con los siguientes **ar
 
 ## 🧩 Integrantes del equipo
 
-- *[Catalina Leal Rojas]*  
-- *[Lucas Daniel Carrillo Aguirre]*  
-- *[Lucas Eduardo Veras Costa]*  
+- *Catalina Leal Rojas*  
+- *Lucas Daniel Carrillo Aguirre*  
+- *Lucas Eduardo Veras Costa*  
  
-
-*(Agregue los nombres completos de los participantes del equipo aquí)*
-
 ---
 
 ## 📝 Notas finales
