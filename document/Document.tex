@@ -35,6 +35,10 @@
 \usepackage{units}  %nicefraction
 \usepackage{placeins}
 \usepackage{booktabs,multirow} 
+\usepackage{float}
+\usepackage{threeparttable}
+\usepackage{tabularx}
+
 %% BibTeX settings
 \usepackage{natbib}
 \bibliographystyle{apalike}
@@ -104,80 +108,55 @@ El link del repositorio es: \url{https://github.com/lucaseduardoveras/PS2_Equipo
 
 
 \section{Introducción} \label{sec:intro}
-Como uno de los ejercicios fundamentales de la creación de la política pública está la identificación de las características socioeconómicas de los individuos de la sociedad y la naturaleza de ellas. Toda vez que es planeado un proyecto de inversión público o privado, es necesaria la clasificación poblacional con base en las principales características de calidad de vida. Esto, en suma, configura una partición social, entre pobres y no pobres (o bien vulnerables y no vulnerables), que permite al hacedor de política identificar qué factores son más relevantes para los grupos de interés y cuál es, con base en ellos, la manera más efectiva de impactar sus necesidades.\\
+
+Uno de los ejercicios fundamentales en la formulación de política pública consiste en identificar las características socioeconómicas de los individuos y comprender la naturaleza de dichas condiciones. Cada vez que se planea un proyecto de inversión, ya sea público o privado, resulta indispensable realizar una clasificación poblacional basada en indicadores de calidad de vida. Este proceso permite establecer una partición social entre hogares pobres y no pobres —o, de manera más amplia, entre grupos vulnerables y no vulnerables—, lo cual facilita al hacedor de política reconocer los factores más determinantes para cada grupo y, con base en ello, diseñar intervenciones más efectivas orientadas a mejorar su bienestar.\\
+
 
 En Colombia, el instrumento de identificación de pobreza más importante es el Sisbén, o Sistema de Identificación de Potenciales Beneficiarios de Programas Sociales, y está administrado por el Departamento Nacional de Planeación, DNP. Este sistema utiliza como insumo encuestas nacionales a hogares y construye una clasificación de cuatro grupos (A a D) a partir de la estimación de su capacidad de generar ingresos y sus características socioeconómicas y demográficas \citep{dnp2021sisben}.\\
 
-Sin embargo, como todos los instrumentos de medición de la pobreza, el Sisbén ha tenido problemas relacionados con la fiabilidad de sus estimaciones sobre la población vulnerable.  Una de las limitaciones de las primeras versiones del instrumento, de hecho, es que los hogares en condiciones relativamente mejores se beneficiaban más de la respuesta estratégica (es decir, la subestimación de sus condiciones materiales) haciendo que la herramienta fuese de cierta forma regresiva \citep{bottia2008sisben}. Esto implica que el problema a resolver sea cómo predecir de forma adecuada la pobreza por medio de las herramientas de medición de la pobreza con las que se cuenta actualmente en el ejercicio investigativo y, consecuentemente, cuál es el modelo de clasificación más pertinente para hacerlo. \\
+Sin embargo, como todos los instrumentos de medición de la pobreza, el Sisbén ha tenido problemas relacionados con la fiabilidad de sus estimaciones sobre la población vulnerable.  Una de las limitaciones de las primeras versiones del instrumento, de hecho, es que los hogares en condiciones relativamente mejores se beneficiaban más de la respuesta estratégica (es decir, la subestimación de sus condiciones materiales) haciendo que la herramienta fuese de cierta forma regresiva \citep{bottia2008sisben}. Esto implica que el problema a resolver sea cómo predecir de forma adecuada la pobreza por medio de nuevas herramientas de medición y, consecuentemente, responder cuál es el modelo de clasificación más pertinente para hacerlo. \\
+
+En los últimos años, la literatura ha avanzado significativamente en el uso de técnicas de aprendizaje automático y datos no tradicionales para la predicción de la pobreza, con el fin de complementar las mediciones convencionales basadas en encuestas de ingresos y consumo. \citet{WorldBank2017} muestran que modelos de \textit{machine learning} aplicados a datos satelitales y geoespaciales pueden explicar hasta el 60\% de la variación del consumo en áreas donde la información censal es limitada, evidenciando el potencial de estas metodologías para generar estimaciones más oportunas y de bajo costo. De manera complementaria, \citet{IDB2024} utilizan enfoques de \textit{microsimulación} y \textit{nowcasting} para predecir tasas de pobreza en América Central, Panamá y República Dominicana, resaltando la importancia de incorporar información de alta frecuencia y validar cuidadosamente los modelos fuera de muestra. Por su parte, \citet{IDB2018} enfatizan la necesidad de aprovechar el \textit{big data} y la analítica predictiva para reducir los costos de medición en América Latina y el Caribe, promoviendo la integración de fuentes tradicionales con nuevas tecnologías y conocimiento local. En conjunto, estos estudios coinciden en que las metodologías predictivas pueden mejorar la focalización de programas sociales y el monitoreo del bienestar, siempre que se acompañen de rigurosas estrategias de validación y transparencia en su uso para la política pública.
+
 
 Para el presente trabajo fue utilizado como insumo el Empalme de las Series de Empleo, Pobreza y Desigualdad - MESE, \citep{dane2018pobreza}, que contiene datos desagregados a nivel de individuo y de hogar sobre el nivel de ingreso, el nivel educativo, la afiliación a la seguridad social, las características demográficas de los hogares y el tipo de actividad laboral. Estas variables fueron fundamentales para la construcción de un modelo que pudiera estimar de forma veraz la condición de pobreza, especialmente porque presentan información complementaria a la expuesta por el Sisbén, y porque cuenta con un respaldo metodológico robusto por cuenta del DANE.\\
 
-En cuanto a los modelos de clasificación, siete fueron aplicados a las bases de datos expuestas: Regresión Lineal, Regresión Logística (Logit), Elastic Net, CART, Random Forest, Gradient Boosting y Naive Bayes. De ellos, aquellos que tuvieron el mejor rendimiento en la competencia propuesta en Kaggle, fueron los dos planteados con Random Forest, con un puntaje de 0.63 cada uno. El primero de ellos se formuló utilizando la medida de F1 como principal métrica de desempeño, y el segundo se hizo utilizando 'bagging'. Además, las variables importantes en ambos modelos fueron las características demográficas del hogar, características de inserción laboral y el tipo de vivienda.\\
+En cuanto a los modelos de clasificación, seis fueron aplicados a las bases de datos expuestas: Regresión Lineal, Regresión Logística (Logit), Elastic Net, Random Forest, Gradient Boosting y Naive Bayes. De ellos, aquellos que tuvieron el mejor rendimiento en la competencia propuesta en Kaggle, fueron los dos planteados con Random Forest, con un puntaje de 0.63 cada uno. Además, las variables importantes en ambos modelos fueron las características demográficas del hogar, características de inserción laboral y el tipo de vivienda.\\
 
 Este resultado sugiere tres nociones fundamentales: (i) el problema planteado parece tener patrones no lineales entre las variables, factor que implica la necesidad de utilizar modelos de entrenamiento que aprenden iterativamente como los árboles, (ii) el bagging reduce la varianza sin incrementar en mayor medida el sesgo, lo que es útil cuando las unidades muestrales son heterogéneas, como en este caso los hogares, (iii) el uso de una cantidad significativamente mayor de árboles (1,000) fue importante para capturar una profundidad suficiente en la complejidad de los datos.\\
 
-
-
 \section{Datos} \label{sec:datos}
-Los datos empleados en este análisis provienen de la \textit{Medición de Pobreza Monetaria y Desigualdad 2018}, elaborada por el \textit{Departamento Administrativo Nacional de Estadística (DANE)} en el marco de la misión para el \textit{Empalme de las Series de Empleo, Pobreza y Desigualdad (MESE)}. Esta iniciativa surgió con el propósito de unificar y armonizar las series de empleo, pobreza y desigualdad, fortaleciendo así la consistencia y credibilidad de los indicadores sobre calidad de vida en Colombia \citep{DANE2018}. Dada su amplitud y nivel de desagregación, esta fuente resulta especialmente adecuada para el objetivo de predecir la condición de pobreza de los hogares, pues contiene información socioeconómica detallada tanto a nivel individual como del hogar, incluyendo variables sobre ingresos, educación, ocupación, características de la vivienda y composición familiar. 
+Los datos empleados en este análisis provienen de la \textit{Medición de Pobreza Monetaria y Desigualdad 2018}, elaborada por el \textit{Departamento Administrativo Nacional de Estadística (DANE)} en el marco de la misión para el \textit{Empalme de las Series de Empleo, Pobreza y Desigualdad (MESE)}. Esta iniciativa surgió con el propósito de unificar y armonizar las series de empleo, pobreza y desigualdad, fortaleciendo así la consistencia y credibilidad de los indicadores sobre calidad de vida en Colombia \citep{DANE2018}. Dada su amplitud y nivel de desagregación, esta fuente resulta especialmente adecuada para el objetivo de predecir la condición de pobreza de los hogares, pues contiene información socioeconómica detallada tanto a nivel individual como del hogar, incluyendo variables sobre ingresos, educación, ocupación, características de la vivienda y composición familiar. Para los fines de este trabajo, los datos fueron obtenidos a través de la plataforma \textit{Kaggle}, donde se desarrolla una competencia orientada a la predicción de pobreza. El conjunto se encuentra estructurado en cuatro archivos: a nivel de hogar e individual, y divididos en muestras de \textit{training} y \textit{testing}.\\
 
-Para los fines de este trabajo, los datos fueron obtenidos a través de la plataforma \textit{Kaggle}, donde se desarrolla una competencia orientada a la predicción de pobreza. El conjunto se encuentra estructurado en cuatro archivos: a nivel de hogar e individual, y divididos en muestras de \textit{training} y \textit{testing}.
+En cuanto a la limpieza de datos, las bases de hogares y personas se integraron utilizando el identificador único \texttt{id} incorporado en los archivos de \textit{Kaggle}. Previo a la construcción de las variables de interés para la predicción, se excluyeron aquellas con una proporción de \textit{missings} superior al 40\%, umbral a partir del cual no se consideró pertinente realizar imputaciones. Las variables restantes fueron seleccionadas con base en un enfoque analítico y en el criterio del equipo de trabajo, priorizando su relevancia teórica y empírica para el fenómeno de estudio. Estas decisiones fueron posteriormente validadas mediante las estadísticas descriptivas que se presentan más adelante en este documento. Finalmente, las variables de ingreso del conjunto de \textit{training} no fueron incluidas, dado que no se encontraban disponibles en el \textit{testing set}, lo que impedía su utilización en la etapa de predicción.\\
 
+Las 27 variables utilizadas se presentan en el Cuadro 1. Las variables provenientes de la base de personas corresponden a la suma de los individuos en el hogar que cumplen determinada condición, así como a características exclusivas del jefe o jefa del hogar. Por su parte, de la base de hogares se seleccionaron variables que describen las condiciones de la vivienda.\\
 
- se dispone de cuatro conjuntos de datos derivados de esta fuente, divididos en muestras de entrenamiento y de prueba para ambos niveles de análisis. En todos los casos, las bases pueden vincularse mediante la variable identificadora \texttt{id}. 
+Con relación a las variables relacionadas con el mercado laboral, se construyeron tasas de ocupación e inactividad, bajo la hipótesis de que una mayor participación laboral reduce la probabilidad de pobreza, mientras que una mayor proporción de personas fuera del mercado de trabajo la incrementa. Estas tasas se definieron como el número de personas ocupadas o inactivas sobre el total de personas en edad de trabajar en el hogar. Asimismo, se tuvieron en cuenta las horas totales trabajadas por los miembros del hogar, el número de trabajadores cuenta propia y si el jefe del hogar es cuenta propia. Estos indicadores permiten aproximar la disponibilidad de recursos laborales y la resiliencia del hogar frente a choques económicos.\\
 
+Respecto a las características socioeconómicas, se incluyeron tanto el número de mujeres como una variable dicotómica que identifica si el jefe o la jefa del hogar es mujer, con el fin de capturar posibles diferencias estructurales de género en la incidencia de la pobreza. Paralelamente, se calcularon indicadores demográficos como la proporción de menores de edad y la tasa de dependencia, definida como la relación entre el número de personas menores de 15 y mayores de 65 años respecto a la población en edad de trabajar. Para esta última, se espera que una mayor proporción de dependientes afecte negativamente la capacidad económica del hogar, al limitar la disponibilidad de miembros que puedan participar en el trabajo remunerado. Igualmente, otra dimensión que también es relevante para predecir la pobreza de un hogar es el nivel educativo de sus integrantes. Se incluyó la proporción de personas con educación superior dentro del hogar, así como el nivel educativo máximo alcanzado por sus miembros. Estas medidas buscan captar el efecto positivo del capital humano sobre la generación de ingresos y la movilidad socioeconómica.\\
 
+En cuanto a las variables disponibles a nivel de hogar, se consolidó un conjunto de indicadores que permite capturar las condiciones habitacionales y estructurales del entorno doméstico, complementando la información demográfica y laboral previamente agregada desde la base individual. En primer lugar, se incorporó la variable \textit{número de habitaciones}, que permite aproximar el tamaño y la capacidad física de la vivienda. Este indicador es relevante, ya que un menor número de habitaciones por hogar suele asociarse con condiciones de hacinamiento, las cuales representan un componente clave del bienestar material y un reflejo de carencias estructurales. Asimismo, se incluyó la variable \textit{tipo de vivienda}, que distingue entre viviendas propias, arrendadas, en usufructo u ocupadas sin título. Esta variable captura el grado de seguridad en la tenencia y constituye un indicador indirecto de la estabilidad económica y patrimonial del hogar. Se espera que los hogares con vivienda propia —especialmente aquellos que la han adquirido totalmente— presenten menor probabilidad de pobreza en comparación con los hogares en arriendo o en posesión informal.\\
 
-Dado que la versión básica de \textit{GitHub} no permite trabajar simultáneamente con los cuatro archivos —debido a que su tamaño supera los 45 MB—, cada integrante del equipo descargó los datos en su computadora local. Varias de las variables del conjunto de prueba conservan los mismos códigos utilizados en la encuesta original del DANE. Por esta razón, se consultó el diccionario de la encuesta y se modificaron los nombres de las variables con el fin de hacerlos más interpretables y facilitar el proceso de análisis.
+También se consideró la variable \textit{número de personas por hogar}, que actúa como un control demográfico básico y refleja la carga familiar total. Hogares más numerosos tienden a enfrentar mayores presiones sobre los recursos disponibles, especialmente cuando el número de dependientes es elevado. Además, se mantuvo la variable \textit{Dominio}, que identifica el dominio geográfico de la encuesta y permite capturar diferencias territoriales y regionales en las condiciones socioeconómicas. Su inclusión es relevante, dado que las dinámicas del mercado laboral, los niveles de precios y la disponibilidad de infraestructura difieren sustancialmente entre las regiones del país.\\
 
-Las variables incluidas en el conjunto de entrenamiento no coinciden completamente con las del conjunto de prueba. Dado que solo pueden emplearse como predictores las variables presentes en este último, se eliminaron del conjunto de entrenamiento aquellas no disponibles en la base de prueba. Así, como la creación y selección de variables no responde a una receta única, en esta etapa se adoptó un enfoque basado en la intuición analítica y el criterio del equipo, priorizando la relevancia teórica y empírica de cada indicador.
+En conjunto, estas variables —de carácter habitacional, demográfico y geográfico— complementan las dimensiones laborales, sociales y educativas incluidas desde la base a nivel de personas y aportan información relevante sobre los determinantes estructurales de la pobreza a nivel de hogar. Su inclusión en el modelo busca capturar tanto las restricciones de capital físico como las condiciones del entorno residencial, las cuales inciden directamente en el bienestar y la vulnerabilidad económica de los hogares. De este modo, se espera mejorar la capacidad predictiva del modelo al aplicar los datos de prueba.\\
 
-Respecto a los datos individuales, se decidió excluir las variables relacionadas con ingresos debido a la alta proporción de valores faltantes. Por ejemplo, la variable que reporta el ingreso neto mensual carece de información para aproximadamente el 80\% de los individuos. En cambio, se consideró pertinente incluir variables de ocupación. Para cada hogar se calculó la proporción de personas ocupadas respecto al total de miembros, bajo la hipótesis de que una mayor participación laboral reduce la probabilidad de pobreza. De manera análoga, se estimó la proporción de personas inactivas, partiendo del supuesto de que una mayor inactividad dentro del hogar incrementa su vulnerabilidad económica.
+Pasando al análisis de los datos empleados, es importante considerar el desbalance de clases presente en el conjunto de entrenamiento. Aproximadamente el 80\% de los hogares son no pobres en el conjunto de datos de muestreo, un aspecto que será examinado con mayor detalle en la sección siguiente. El conjunto de hogares en el conjunto de datos de entrenamiento posee 164.959 observaciones mientras que el conjunto de datos de prueba posee 66.168 observaciones, alrededor de 40\% del tamaño del conjunto de prueba.\\
 
-En cuanto a las características socioeconómicas, se construyeron diversas variables a nivel de hogar. Se incluyó una variable dicotómica que identifica si el jefe o la jefa del hogar es mujer, con el objetivo de capturar posibles diferencias estructurales asociadas al género en la incidencia de la pobreza. Asimismo, se calcularon indicadores demográficos como la proporción de menores de edad y la tasa de dependencia, definida como la relación entre el número de personas menores y mayores de edad respecto a la población en edad de trabajar. Se espera que una mayor proporción de dependientes afecte negativamente la capacidad económica del hogar.
+El Cuadro 3 presenta las estadísticas descriptivas (media, mediana y desviación estándar) para los hogares pobres y no pobres en el conjunto de entrenamiento, mientras que el Cuadro 2 presenta los resultados de la diferencia de medias para las variables numéricas. Esta última confirma que nuestra selección de variables es adecuada, pues todas las diferencias entre ambos grupos son estadísticamente significativas. \\
 
-También se construyó una variable que mide la proporción de personas con educación superior dentro del hogar, así como el nivel educativo máximo alcanzado por sus miembros. Estas medidas buscan captar el efecto positivo del capital humano sobre la generación de ingresos y la movilidad socioeconómica.
+Estos resultados permiten observar que, en promedio, los hogares clasificados como pobres registran mayores tasas de inactividad y de trabajo por cuenta propia, así como menores horas trabajadas —tanto en total como por parte del jefe o jefa del hogar— y un menor número de personas ocupadas. En conjunto, estos patrones sugieren una inserción laboral más precaria y una menor capacidad del hogar para generar ingresos estables, lo que refuerza la relación entre la vulnerabilidad en el mercado de trabajo y la incidencia de la pobreza. La mayor prevalencia del trabajo por cuenta propia podría reflejar estrategias de subsistencia ante la falta de oportunidades formales, mientras que las elevadas tasas de inactividad evidencian barreras estructurales de acceso al empleo, especialmente en hogares con alta dependencia económica. En el plano socioeconómico y demográfico, los hogares pobres presentan en promedio más integrantes, mayor número de menores de edad, y jefes de hogar más jóvenes, lo que refleja una mayor carga de dependencia y menor acumulación de capital humano. En contraste, los hogares no pobres exhiben niveles educativos más altos, una mayor proporción de miembros con educación superior y tasas de ocupación más elevadas, factores coherentes con una menor vulnerabilidad económica.\\
 
-Además, se elaboraron indicadores laborales agregados, entre ellos la tasa de ocupación y la tasa de inactividad del hogar, calculadas como la proporción de personas ocupadas o inactivas sobre la población en edad de trabajar. Se anticipa que una mayor tasa de ocupación se asocie con una menor probabilidad de pobreza, mientras que una alta tasa de inactividad la incremente.
-
-Se incluyeron, asimismo, variables que reflejan la estructura de propiedad y la intensidad laboral del hogar. Destacan la proporción de personas con trabajo propio —como aproximación al autoempleo o emprendimiento informal— y el número total de horas trabajadas durante la semana de referencia. Estos indicadores permiten aproximar la disponibilidad de recursos laborales y la resiliencia del hogar frente a choques económicos.
-
-Finalmente, se construyó un conjunto de variables específicas para el jefe o la jefa del hogar, con el propósito de capturar sus características individuales y su influencia directa sobre la situación económica familiar. Entre ellas se consideraron el género, la edad y el nivel educativo alcanzado, entendidos como factores determinantes del potencial de generación de ingresos. Asimismo, se incluyeron indicadores laborales que identifican si el jefe o la jefa del hogar se encuentra ocupado(a), las horas trabajadas durante la semana de referencia, su afiliación al sistema de seguridad social —como medida de formalidad laboral— y la condición de trabajo propio o negocio familiar. Estas variables permiten evaluar el grado de estabilidad económica y las estrategias de inserción laboral adoptadas por los hogares.
-
-En cuanto a las variables disponibles a nivel de hogar, se consolidó un conjunto de indicadores que permite capturar las condiciones habitacionales y estructurales del entorno doméstico, complementando la información demográfica y laboral previamente agregada desde la base individual.
-
-En primer lugar, se incorporó la variable \textit{número de habitaciones}, que permite aproximar el tamaño y la capacidad física de la vivienda. Este indicador es relevante, ya que un menor número de habitaciones por hogar suele asociarse con condiciones de hacinamiento, las cuales representan un componente clave del bienestar material y un reflejo de carencias estructurales.
-
-Asimismo, se incluyó la variable \textit{tipo de vivienda}, que distingue entre viviendas propias, arrendadas, en usufructo u ocupadas sin título. Esta variable captura el grado de seguridad en la tenencia y constituye un indicador indirecto de la estabilidad económica y patrimonial del hogar. Se espera que los hogares con vivienda propia —especialmente aquellos que la han adquirido totalmente— presenten menor probabilidad de pobreza en comparación con los hogares en arriendo o en posesión informal.
-
-También se consideró la variable \textit{número de personas por hogar}, que actúa como un control demográfico básico y refleja la carga familiar total. Hogares más numerosos tienden a enfrentar mayores presiones sobre los recursos disponibles, especialmente cuando el número de dependientes es elevado. Además, se mantuvo la variable \textit{Dominio}, que identifica el dominio geográfico de la encuesta y permite capturar diferencias territoriales y regionales en las condiciones socioeconómicas. Su inclusión es relevante, dado que las dinámicas del mercado laboral, los niveles de precios y la disponibilidad de infraestructura difieren sustancialmente entre las regiones del país.
-
-En el total usamos 27 variables para hacer nuestras predicciones. En conjunto, estas variables —de carácter habitacional, demográfico y geográfico— complementan las dimensiones laborales y educativas incluidas en las bases individuales y aportan información relevante sobre los determinantes estructurales de la pobreza a nivel de hogar. Su inclusión en el modelo busca capturar tanto las restricciones de capital físico como las condiciones del entorno residencial, las cuales inciden directamente en el bienestar y la vulnerabilidad económica de los hogares. De este modo, se espera mejorar la capacidad predictiva del modelo al aplicar los datos de prueba.
-
-Pasando al análisis de los datos empleados, es importante considerar el desbalance de clases presente en el conjunto de entrenamiento. Aproximadamente el 80\% de los hogares son no pobres en el conjunto de datos de muestreo, un aspecto que será examinado con mayor detalle en la sección siguiente. El conjunto de hogares en el conjunto de datos de entrenamiento posee 164959 observaciones mientras que el conjunto de datos de prueba posee 66168 observaciones, al rededor de 40\% del tamaño del conjunto de prueba.
-
-El Cuadro \ref{tab:descriptivas_pobreza} presenta las estadísticas descriptivas (media, mediana y desviación estándar) para los hogares pobres y no pobres en el conjunto de entrenamiento. Tal como se anticipa teóricamente, las características asociadas a la informalidad y la precariedad laboral son más pronunciadas entre los hogares pobres. Estos registran mayores tasas de inactividad y de trabajo por cuenta propia, así como menores horas trabajadas, tanto en total como por parte del jefe o jefa del hogar, y un menor número de personas ocupadas.
-
-En el plano socioeconómico y demográfico, los hogares pobres presentan en promedio más integrantes, mayor número de menores de edad, y jefes de hogar más jóvenes, lo que refleja una mayor carga de dependencia y menor acumulación de capital humano. En contraste, los hogares no pobres exhiben niveles educativos más altos, una mayor proporción de miembros con educación superior y tasas de ocupación más elevadas, factores coherentes con una menor vulnerabilidad económica.
-
-El Cuadro \ref{tab:descriptivas_pobreza} presenta las medias de las variables categóricas empleadas en las predicciones. Se observa que la proporción de hogares encabezados por mujeres es superior entre los hogares pobres, lo que sugiere posibles desigualdades de género en el acceso a recursos económicos. Asimismo, la proporción de jefes de hogar ocupados es significativamente mayor entre los hogares no pobres, lo que refleja la estrecha relación entre inserción laboral y condiciones de vida.
-
-En cuanto a las condiciones habitacionales, se evidencia que las familias no pobres residen en mayor proporción en viviendas propias y totalmente pagadas, mientras que los hogares pobres presentan una concentración más alta en viviendas en arriendo o en condiciones de tenencia precaria, como la posesión sin título.
-
-Finalmente, respecto al nivel educativo, tanto del jefe del hogar como del conjunto de sus miembros, se aprecia un patrón claro: los hogares no pobres exhiben una proporción considerablemente mayor de educación universitaria, mientras que los hogares pobres se concentran en niveles educativos básicos, especialmente primaria y media. Este contraste refuerza la hipótesis de que el capital humano constituye un determinante fundamental de la pobreza en el país.
-
-Llevando en cuenta el porcesamiento de los datos, la próxima sección describe los modelos usados para hacer las predicciones.
-
+El Cuadro 4 presenta las medias de las variables categóricas empleadas en las predicciones. Se observa que la proporción de hogares encabezados por mujeres es superior entre los hogares pobres, lo que sugiere posibles desigualdades de género en el acceso a recursos económicos. Asimismo, la proporción de jefes de hogar ocupados es significativamente mayor entre los hogares no pobres, lo que refleja la estrecha relación entre inserción laboral y condiciones de vida. En cuanto a las condiciones habitacionales, se evidencia que las familias no pobres residen en mayor proporción en viviendas propias y totalmente pagadas, mientras que los hogares pobres presentan una concentración más alta en viviendas en arriendo o en condiciones de tenencia precaria, como la posesión sin título. Finalmente, respecto al nivel educativo, tanto del jefe del hogar como del conjunto de sus miembros, se aprecia un patrón claro: los hogares no pobres exhiben una proporción considerablemente mayor de educación universitaria, mientras que los hogares pobres se concentran en niveles educativos básicos, especialmente primaria y media. Este contraste refuerza la hipótesis de que el capital humano constituye un determinante fundamental de la pobreza en el país.\\
 
 \section{Modelos y Resultados}
-En esta sección describimos los modelos utilizados para las predicciones y el modelo que alcanzó el mejor desempeño. 
-Las estimaciones se realizaron empleando los siguientes algoritmos de clasificación: 
+En esta sección describimos los modelos utilizados para predecir la pobreza a nivel de hogar y el modelo que alcanzó el mejor desempeño. Las estimaciones se realizaron empleando los siguientes algoritmos de clasificación: \textbf{Modelo de probabilidad lineal},
 \textbf{Regresión Logit}, \textbf{Naive Bayes}, \textbf{Random Forest}, \textbf{CART}, \textbf{Elastic Net} y \textbf{Boosting}. \\
 
-Para cada modelo, con excepción de la Regresión Logit, se calibraron los \textit{hiperparámetros} mediante 
-\textit{validación cruzada de cinco pliegues} (\textit{five-fold cross-validation}). 
-Dado que la métrica utilizada para evaluar las predicciones en la competencia es la \textbf{estadística F}, 
-optamos por emplearla también como criterio de desempeño durante la calibración. \\
+Para cada modelo, con excepción del modelo lineal y de la regresión Logit, se calibraron los \textit{hiperparámetros} mediante 
+validación cruzada de cinco pliegues (\textit{five-fold cross-validation}). 
+Dado que la métrica utilizada para evaluar las predicciones en la competencia es la \textbf{estadística F}, optamos por emplearla también como criterio de desempeño durante la calibración. Por otro lado, todos los modelos -menos el de probabilidad lineal- incluyeron exactamente las 26 variables que se describieron y analizaron en la sección de datos.  \\
 
 La \textbf{estadística F}, o \textit{F1-score}, se define como la media armónica entre la \textit{precisión} 
 (\textit{precision}) y la \textit{sensibilidad} (\textit{recall}), cuya fórmula es la siguiente:
@@ -190,35 +169,191 @@ donde:
 \begin{equation}
 \text{Precisión} = \frac{TP}{TP + FP}, \qquad 
 \text{Sensibilidad} = \frac{TP}{TP + FN}
-\end{equation}\\
+\end{equation}
 
 y \(TP\), \(FP\) y \(FN\) representan, respectivamente, los verdaderos positivos, falsos positivos y falsos negativos. \\
 
-Cabe señalar que los datos de entrenamiento presentan un \textbf{fuerte desbalance de clases}, 
-lo cual tiende a sesgar los modelos hacia la clase más frecuente, afectando negativamente la predicción 
-de la clase minoritaria —en este caso, los hogares pobres. 
-Para mitigar este problema, aplicamos \textit{técnicas de remuestreo} (tanto \textit{oversampling} como \textit{undersampling}) 
-en cada modelo. \\
+Cabe señalar que los datos de entrenamiento presentan un marcado \textbf{desbalance de clases}, 
+lo cual tiende a sesgar los modelos hacia la clase más frecuente, afectando negativamente la capacidad de predicción 
+sobre la clase minoritaria —en este caso, los hogares pobres. 
+Para mitigar este problema, se aplicaron \textit{técnicas de remuestreo} (tanto \textit{oversampling} como \textit{undersampling}) 
+en algunos de los modelos. Adicionalmente, el umbral de decisión asociado a la probabilidad estimada \(p\), que por convención se fija en 0.5, fue recalibrado para maximizar la métrica \(F_1\) o el área bajo la curva ROC (AUC) en cada modelo. Para ello, se emplearon dos estrategias a partir de las predicciones del \textit{training set} generadas en cada uno de los pliegues (\textit{folds}) de la validación cruzada: en primer lugar, se construyó una grilla de posibles umbrales de clasificación entre \(p = 0.05\) y \(p = 0.95\), seleccionando aquel que maximizara el valor de \(F_1\); en segundo lugar, a partir de la curva ROC, se identificó el umbral que maximizara la proporción de verdaderos positivos y minimizara los falsos negativos. De esta manera, se buscó reducir el sesgo hacia la clase mayoritaria y mejorar la capacidad discriminante de los modelos.\\
 
-Adicionalmente, el \textbf{umbral de corte} en la probabilidad estimada \(p\), que usualmente se fija en 0.5 por convención, 
-fue \textbf{recalibrado} para maximizar la métrica \(F_1\) en cada modelo.\\
+\subsection{Modelos utilizados en las Predicciones}
 
-\subsection{Selección del Modelo y Entrenamiento}
+Los modelos más sencillos utilizados en la estimación fueron el modelo de\textbf{probabilidad lineal} y el modelo \textbf{logit}. Para el primero se incluyeron todas las variables de la base más algunos efectos no lineales e interacciones:
 
-\subsection{Calibración de los Hiperparámetros}
+\begin{equation}
+\begin{aligned}
+Pobre_i = \, & \beta_0 
++ \mathbf{X}_i'\boldsymbol{\beta} 
++ \beta_1 Nper_i^2 
++ \beta_2 edad\_head_i^2 
++ \boldsymbol{\beta_3} (bin\_headWoman_i \times cat\_educHead_i) \\
+& + \boldsymbol{\beta_4} (edad\_head_i \times cat\_educHead_i)
++ \beta_5 (Nper_i \times t\_dependencia_i)
++ \varepsilon_i
+\end{aligned}
+\label{eq:modelo_mpl}
+\end{equation}
 
-\subsection{Análisis Comparativa}
+donde $\mathbf{X}_i'\boldsymbol{\beta} $ representa los coeficientes asociados a las 26 variables de nuestra base. Dada la baja complejidad del modelo, buscamos mejorar su capacidad predictiva mediante las 5 variables adicionales. Estas buscan capturar las no linealidades del número de personas en el hogar, el pico de ingresos respecto a la edad y las heterogeneidades producto del nivel educativo.\\
+
+Para el modelo \textbf{Logit} mantuvimos solamente las 26 variables seleccionadas. Este modelo no requiere la definición de hiperparámetros y, en general, busca maximizar la siguiente función de verosimilitud:
+
+\[
+\mathcal{L}(\beta) = \prod_{i=1}^{n} \left[ \pi(x_i)^{y_i} \left(1 - \pi(x_i)\right)^{1 - y_i} \right],
+\]
+donde \(\pi(x_i) = \frac{1}{1 + e^{-x_i'\beta}}\) representa la probabilidad estimada de que el resultado sea igual a uno dado el vector de covariables \(x_i\). En otras palabras, el modelo logit relaciona linealmente los predictores con el logaritmo de las probabilidades relativas del evento de interés. Adicionalmente, para ambos modelos se empleó la estrategia de calibración del punto de corte con la AUC descrita anteriormente.\\
+
+Otro modelo que utilizamos fue el \textbf{Elastic Net}. Este modelo combina las propiedades de los métodos \textbf{LASSO} y \textbf{Ridge}, introduciendo una regularización sobre los coeficientes de las variables para prevenir el sobreajuste y mejorar la capacidad predictiva. En términos formales, el Elastic Net busca minimizar la siguiente función objetivo:
+
+\[
+\min_{\beta} \left\{ 
+\frac{1}{2n} \sum_{i=1}^{n} (y_i - x_i'\beta)^2 
++ \lambda \left[ (1 - \alpha)\frac{1}{2} \|\beta\|_2^2 + \alpha \|\beta\|_1 \right]
+\right\},
+\]
+donde \(\lambda\) controla la intensidad de la penalización total y \(\alpha \in [0,1]\) determina el grado de mezcla entre las penalizaciones \(\ell_1\) (LASSO) y \(\ell_2\) (Ridge). Valores de \(\alpha\) cercanos a 1 se asemejan a LASSO, mientras que valores cercanos a 0 se aproximan a Ridge. Para este modelo , realizamos 2 intentos, uno que mezcla ambos tipos de penalizaciones y otro solamente con penalización tipo LASSO. Al igual que los primeros dos modelos, elegimos el punto de corte basado en la AUC (ROC). \\
+
+El modelo \textit{Naive Bayes} se basa en el teorema de Bayes, asumiendo independencia condicional entre las variables explicativas dado el estado de la variable objetivo. Formalmente, la probabilidad de pertenecer a la clase \(y \in \{0,1\}\) se expresa como:
+
+\[
+P(Y = y \mid X = x) \propto P(Y = y) \prod_{j=1}^{p} P(X_j = x_j \mid Y = y)
+\]
+
+y la clase predicha corresponde a \(\hat{y} = \arg\max_{y} P(Y = y \mid X = x)\).\\
+
+En este modelo se calibraron tres hiperparámetros: \texttt{usekernel}, que define si las variables continuas se modelan mediante distribuciones gaussianas o con densidades kernel; \texttt{adjust}, que controla la suavidad del kernel; y \texttt{laplace}, que aplica un suavizado de Laplace para evitar probabilidades nulas. Para este modelo, decidimos probar el rendimiento de dos tipos de remuestreo que buscan tratar el problema de desbalance de clases. Los resultados se presentan en la Figura 1 y estos comprueban que emplear estas técnicas mejora sustancialmente la sensiblidad del modelo. Asimismo, ajustamos el punto de corte de la clasificación con la técnica de maximización del F1 descrita anteriormente, nuevamente, para probar otras soluciones a través de nuestras estimaciones. \\
+
+Los últimos 2 métodos empleados corresponden a modelos basados en \textbf{árboles}. Implementamos \textbf{Random Forest}, el cual es un método de ensamble que combina múltiples árboles de decisión para mejorar la capacidad predictiva y reducir la varianza del modelo individual. Cada árbol se entrena sobre una muestra distinta del conjunto de datos, y las observaciones no incluidas en cada muestra —las llamadas Out-of-Bag (OOB)— se utilizan para estimar el error de generalización del modelo sin necesidad de un conjunto de validación adicional.\\
+
+\[
+\hat{y}(x) = \operatorname{mode}\{\, T_b(x) \,\}_{b=1}^{B}
+\]
+
+donde cada \(T_b(x)\) es un árbol de decisión construido a partir de una muestra de \textit{bootstrap} y usando un subconjunto aleatorio de predictores en cada división. Los hiperparámetros que elegimos mediante validación cruzada fueron el número de variables seleccionadas aleatoriamente en cada división (controla la correlación entre árboles), el tamaño mínimo de los nodos terminales y el criterio de división. Teniendo en cuenta los resultados obtenidos con Naive Bayes, en este modelo decidimos tratar el desbalance con \textit{downsampling} y, al igual que el resto de modelos, con la calibración de un punto de corte más óptimo.\\
+
+Finalmente, implementamos un modelo \textbf{Gradient Boosting}. En este caso se construye el modelo de manera aditiva y secuencial, combinando múltiples árboles débiles (de poca profundidad) para corregir los errores cometidos por los anteriores. Este proceso iterativo se puede resumir como:
+\[
+\hat{\Theta}_m = \arg\min_{\Theta_m} 
+\left\{
+\sum_{i=1}^{n} 
+L\big( y_i, f_{m-1}(x_i) + T(x_i; \Theta_m) \big)
+\right\}
+\]
+La particularidad de esta técnica para \textit{Boosting}, es que resuelve utilizando gradiente descendente, lo que permite estimar para funciones de pérdida no lineales y mayor escalabilidad. Para el desbalance se ajustó el umbral de clasificación con la AUC (ROC) y los parámetros elegidos por validación cruzada fueron el número de árboles, la profundidad de los árboles, la tasa de aprendizaje y el número mínimo de observaciones por nodo.\\
+
+En el cuadro 5 se resumen las grillas, hiperparametros y umbrales para cada modelo. En la siguiente sección se profundizará en la elección y consecuencias de nuestros hiperparámetros.\\
+
+\subsection{Mejor modelo de predicción (F1-score: 0.63)}
+
+El modelo con mejor rendimiento de los expuestos anteriormente fue el Random Forest, presentado en dos versiones: uno calibrado con validación cruzada (5-fold), con una búsqueda del número de variables de un valor \textit{m} entre 6, 8, 9 y 10; y con un entrenamiento de 1,000 árboles, con la selección de las variables más importantes usando gini. El otro fue un Random Forest tipo Bagging, es decir, el número de variables igual al total de variables disponibles (26), 500 árboles y el ajuste de importancia con permutación. Notese que con ambos modelos intentamos distintas estrategias para la selección de hiperparámetros. En el primero fijamos el número mínimo de observaciones en los nodos a uno, para asegurar árboles muy complejos y así obtener una predicción con menos sesgo. Por el contrario, con Bagging si permitimos al modelo elegir un valor y añadimos una manera adicional de manejar el desbalance: elegir 
+
+A continuación se presenta la comparación entre este modelo y los cinco modelos mejor calibrados por debajo de él.\\
+
+\textbf{RF vs. Lineal.} A pesar de que en este modelo fueron seleccionadas interacciones no lineales entre las variables de género y educación, es claro que por el volumen de predictores existentes en la base de datos una agregación manual de las interacciones es insuficiente. El Random Forest lo hace automáticamente. Además, el Random Forest estuvo calibrado a F1 que se alinea con los parámetros de la competencia de Kaggle, mientras que el modelo lineal permanece limitado por su frontera casi lineal.\\
+
+\textbf{RF vs. Logit.} El modelo de Random Forest superó al modelo Logit principalmente porque la relación entre las variables explicativas y la pobreza, como se ha expuesto antes, no es lineal u homogénea. El modelo Logit impone una frontera de decisión lineal, lo que limita su capacidad de capturar interacciones complejas que el RF hace profundamente. En este sentido, el RF construye múltiples árboles de decisión que dividen el espacio en subregiones que permiten modelar umbrales más flexibles. Por último, no seleccionar los hiperparámetros impide que utilizando el Logit se decida la capacidad de ajuste del modelo. \\
+
+\textbf{RF vs. Elastic Net con LASSO.} Si bien el modelo EN introduce regularización a través de los parámetros \(\lambda\) y \(\alpha\)\\ -que justamente permite reducir la varianza y evita el sobreajuste-, su capacidad de ajuste sigue siendo lineal en los predictores, en contraposición a la naturaleza no lineal del RF. Además, mientras que la penalización LASSO de Elastic Net controla la magnitud de los coeficientes, y por ende facilitando interpretabilidad, también puede reducir la contribución a la predicción de las variables altamente correlacionadas como las demográficas y laborales.\\ 
+
+\textbf{RF vs. Naive Bayes con downsampling.} El Naive Bayes con downsampling mejoró la sensibilidad respecto a su versión sin rebalanceo, de forma que el clasificador dejó de sesgarse hacia la categoría de "no pobre", pero su rendimiento general fue menor al de los RF. Esto se debe principalmente a que el NB asume independencia condicional entre los predictores y modela cada variable por separado, lo que es impertinente para este ejercicio, pues las variables de hogar y laborales están altamente correlacionadas. Además, el downsampling reduce la información de la clase mayoritaria y puede aumentar la varianza del estimador, haciendo que el ajuste dependa más del umbral óptimo.\\
+
+\textbf{RF vs. Gradient Boosting.} El Gradient Boosting capturó no linealidades e interacciones mediante la suma secuencial de árboles débiles, pero fue insuficiente en comparación a los modelos RF por varias razones. La primera es que la proporción de \textit{shrinkage} (de entre 0.01 y 0.001) y número de árboles (máximo de 150) da cuenta de un modelo subentrenado, lo que seguro implicó una limitación en la capacidad del modelo de refinar los errores de etapas previas. Además, en el modelo de GB no se usaron pesos de clase, lo que llevó a favorecer a la clase maoritaria. Por último, el GB es más sensible a la especificación de hiperparámetros, que, sin las iteraciones suficientes, terminan por no generalizar bien. En contraposición a esto último, los modelos de RF combinaron muchos árboles y un submuestreo de variables en cada división, lo que redujo la varianza.\\
+
+Finalmente, este ejercicio nos permite establecer cuáles son las variables más importantes a la hora de predecir la pobreza a nivel de hogar en Colombia. Como se trata de modelos Random Forest, se puede calcular la importancia de una variable permutando sus valores y comparando el error \textit{out-of-bag}. Si este error aumenta significa que la variable es importante y es necesaria para mejorar el desempeño del modelo. En las Figuras 2 y 3 se presentan las 20 variables más importantes para el Random Forest estándar y el Random Forest tipo Bagging, respectivamente.
+
+Si bien con cada modelo varía el ranking de importancia para las variables, se pueden notar ciertos patrones que ratifican a algunas variables como buenos predictores de la variable de interés. Los resultados sugieren que los factores laborales y demográficos desempeñan un papel central en la explicación de la pobreza de los hogares. En ambos modelos, destacan entre las variables más influyentes el número total de horas trabajadas por los miembros del hogar, la edad del jefe o jefa del hogar, la presencia de menores de edad y la tasa de ocupación. Estas variables reflejan la relevancia del acceso al mercado laboral y la estructura etaria como determinantes directos del bienestar económico. \\
+
+En particular, un mayor volumen de trabajo remunerado dentro del hogar tiende a reducir la probabilidad de pobreza, mientras que una elevada proporción de menores implica una mayor carga de dependencia que restringe la capacidad productiva del hogar. La edad del jefe del hogar también aparece como un predictor relevante, lo que sugiere la existencia de un ciclo de ingresos vinculado al momento del ciclo vital: los hogares encabezados por personas en edades intermedias suelen presentar mayor estabilidad económica. Asimismo, la importancia de variables como el tipo de vivienda, la tasa de educación superior y el dominio geográfico resalta la influencia combinada de las condiciones estructurales y territoriales en la generación de pobreza. En conjunto, los resultados confirman que las carencias de capital humano y la inserción laboral precaria son factores decisivos en la explicación de la pobreza monetaria en Colombia.\\
+
 
 \section{Conclusiones}
 
 \newpage
 \section{Anexos}
 
+\begin{table}[H]
+\centering
+\caption{Descripción y tipo de las variables utilizadas}
+\label{tab:variables}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lll}
+\toprule
+\textbf{Variable} & \textbf{Tipo} & \textbf{Descripción} \\
+\midrule
+Dominio & Categórica & Cada una de las 24 áreas metropolitanas, resto de cabeceras y rural \\
+Pobre & Binaria & 1 si el hogar es pobre, 0 de lo contrario \\
+Nper & Numérica & Número de personas en el hogar \\
+n\_habitaciones & Numérica & Número de habitaciones en la vivienda \\
+tipo\_vivienda & Categórica & Tipo de vivienda \\
+bin\_headWoman & Binaria & 1 si el jefe del hogar es mujer, 0 de lo contrario \\
+cat\_educHead & Categórica & Nivel de educación del jefe del hogar \\
+bin\_headSS & Binaria & 1 si el jefe del hogar cuenta con seguridad social, 0 de lo contrario \\
+bin\_occupiedHead & Binaria & 1 si el jefe del hogar está ocupado, 0 de lo contrario \\
+edad\_head & Numérica & Edad del jefe del hogar \\
+bin\_headCpropia & Binaria & 1 si el jefe del hogar tiene casa propia, 0 de lo contrario \\
+h\_workedHead & Numérica & Horas trabajadas por el jefe del hogar en la última semana \\
+num\_women & Numérica & Número de mujeres en el hogar \\
+num\_minors & Numérica & Número de menores de 15 años en el hogar \\
+num\_mayores & Numérica & Número de mayores de 65 años en el hogar \\
+cat\_maxEduc & Categórica & Nivel máximo de educación en el hogar \\
+num\_educ\_sup & Numérica & Número de personas con educación superior en el hogar \\
+num\_c\_propia & Numérica & Número de trabajadores con cuenta propia en el hogar \\
+num\_h\_trabajadas & Numérica & Número de horas trabajadas por los miembros del hogar \\
+num\_ocu & Numérica & Número de ocupados en el hogar \\
+num\_pet & Numérica & Número de personas en edad de trabajar en el hogar \\
+num\_inac & Numérica & Número de inactivos en el hogar \\
+t\_ocu & Numérica & Tasa de ocupación \\
+t\_inac & Numérica & Tasa de inactividad \\
+t\_educ\_sup & Numérica & Tasa de personas con educación superior \\
+t\_dependencia & Numérica & Tasa de dependencia (proporción de menores de 15 y mayores de 65 años en el hogar) \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Diferencia de medias entre hogares pobres y no pobres}
+\small
+\label{tab:dif_medias}
+\begin{tabular}{lcccccc}
+\toprule
+Variable & Media Pobre & Media No Pobre & Diferencia & t & p-valor & Signif. \\
+\midrule
+Nper & 4.134 & 3.082 & 1.052 & -87.48 & 0.0 & *** \\
+n\_habitaciones & 3.032 & 3.48 & -0.449 & 63.27 & 0.0 & *** \\
+bin\_headWoman & 0.468 & 0.406 & 0.062 & -20.19 & 0.0 & *** \\
+bin\_headSS & 0.909 & 0.949 & -0.04 & 23.6 & 0.0 & *** \\
+bin\_occupiedHead & 0.643 & 0.727 & -0.084 & 29.04 & 0.0 & *** \\
+edad\_head & 46.774 & 50.323 & -3.548 & 35.47 & 0.0 & *** \\
+bin\_headCpropia & 0.473 & 0.322 & 0.151 & -49.84 & 0.0 & *** \\
+h\_workedHead & 28.621 & 34.493 & -5.872 & 37.99 & 0.0 & *** \\
+num\_women & 2.236 & 1.616 & 0.619 & -77.29 & 0.0 & *** \\
+num\_minors & 1.546 & 0.622 & 0.924 & -119.05 & 0.0 & *** \\
+num\_mayores & 0.275 & 0.333 & -0.058 & 16.36 & 0.0 & *** \\
+num\_educ\_sup & 0.357 & 0.879 & -0.522 & 111.62 & 0.0 & *** \\
+num\_c\_propia & 0.86 & 0.652 & 0.208 & -40.07 & 0.0 & *** \\
+num\_h\_trabajadas & 52.459 & 71.114 & -18.655 & 67.48 & 0.0 & *** \\
+num\_ocu & 1.257 & 1.566 & -0.309 & 50.26 & 0.0 & *** \\
+num\_pet & 3.021 & 2.637 & 0.384 & -41.68 & 0.0 & *** \\
+num\_inac & 1.446 & 0.923 & 0.523 & -75.06 & 0.0 & *** \\
+t\_ocu & 0.426 & 0.621 & -0.195 & 101.69 & 0.0 & *** \\
+t\_inac & 0.461 & 0.327 & 0.134 & -69.49 & 0.0 & *** \\
+t\_educ\_sup & 0.127 & 0.348 & -0.222 & 126.7 & 0.0 & *** \\
+t\_dependencia & 67.415 & 37.837 & 29.578 & -95.26 & 0.0 & *** \\
+t\_c\_propia & 0.298 & 0.262 & 0.036 & -19.16 & 0.0 & *** \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 
 \begin{table}[htbp]\centering
 \caption{Estadísticas descriptivas para las variables numéricas}
 \label{tab:descriptivas_pobreza}
-\scriptsize
+\small
 \begin{tabular}{lcccccc}
 \toprule
 \multirow{2}{*}{\textbf{Variable}} & 
@@ -250,10 +385,11 @@ Tasa Cuenta Propia     & 0.30 & 0.26 & 0.25 & 0.00 & 0.29 & 0.33 \\
 \end{tabular}
 \end{table} 
 
+
 \begin{table}[htbp]\centering
 \caption{Promedios de variables categóricas por condición de pobreza}
 \label{tab:catvars_pobreza}
-\scriptsize
+\small
 \begin{tabular}{lcc}
 \toprule
 \textbf{Variable} & \textbf{Pobre} & \textbf{No Pobre} \\
@@ -286,6 +422,93 @@ Universitaria & 0.261 & 0.544 \\
 \end{tabular}
 \end{table}
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{ROC_NAIVE_BAYES.jpg}
+\caption{ROC_Naive}
+\label{ROC}
+\end{figure}
+
+
+\begin{table}[H]
+\centering
+\begin{threeparttable}
+\caption{Comparación de modelos y configuración de hiperparámetros}
+\scriptsize
+\begin{tabularx}{\textwidth}{l X X c}
+\toprule
+\textbf{Modelo} & 
+\textbf{Grilla} & 
+\textbf{Hiperparámetros} & 
+\textbf{Score (F1)} \\
+\midrule
+Random Forest & 
+node.size = [1, 5, 15, 50], split.rule = \{Gini, Hellinger\} &
+node.size = \textcolor{red}{50}, split.rule = \textcolor{red}{Hellinger}, num.vars = \textcolor{red}{26}, num.trees = \textcolor{red}{500}, umbral = \textcolor{red}{0.522} &
+0.63 \\
+
+Random Forest &
+num.vars = [6, 8, 9, 10] &
+node.size = \textcolor{red}{1}, split.rule = \textcolor{red}{Gini}, num.vars = \textcolor{red}{6}, num.trees = \textcolor{red}{1000}, umbral = \textcolor{red}{0.340} &
+0.63 \\
+
+Logit &
+NA &
+umbral = \textcolor{red}{0.2066} &
+0.62 \\
+
+Random Forest &
+num.vars = [6, 8, 9, 10] &
+node.size = \textcolor{red}{1}, split.rule = \textcolor{red}{Gini}, num.vars = \textcolor{red}{6}, num.trees = \textcolor{red}{1000}, umbral = \textcolor{red}{0.217} &
+0.61 \\
+
+Lineal &
+NA &
+umbral = \textcolor{red}{0.2692} &
+0.61 \\
+
+Elastic Net &
+$\alpha$ = (0,1) saltos de 0.1, $\lambda$ = (10$^{-3}$, 10$^{3}$) diez valores &
+$\alpha$ = \textcolor{red}{0.7}, $\lambda$ = \textcolor{red}{0.001}, umbral =\textcolor{red}{0.2} &
+0.60 \\
+
+Gradient Boosting &
+num.trees = [50, 100, 150], depth = [2, 5, 7], tasa.aprendizaje = [0.01, 0.001], num.node = [5, 10] &
+num.trees = \textcolor{red}{50}, depth = \textcolor{red}{7}, tasa.aprendizaje = \textcolor{red}{0.01}, num.node = \textcolor{red}{5}, umbral =\textcolor{red}{0.1855} &
+0.57 \\
+
+Elastic Net &
+$\lambda$ = (10$^{-3}$, 10$^{3}$), diez valores &
+$\alpha$ = \textcolor{red}{1}, $\lambda$ = \textcolor{red}{0.001}, umbral =\textcolor{red}{0.5} &
+0.54 \\
+
+Naive Bayes (Down) &
+kernel = \{TRUE, FALSE\}, laplace = \{0, 1\} &
+kernel = \textcolor{red}{FALSE}, laplace = \textcolor{red}{1}, adjust = \textcolor{red}{1}, umbral =\textcolor{red}{0.48} &
+0.51 \\
+\bottomrule
+\end{tabularx}
+\end{threeparttable}
+\end{table}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{importance.pdf}
+\caption{Importancia calculada con Random Forest (Gini)}
+\label{gini}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{importance_rf.jpg}
+\caption{Importancia calculada con Bagging (Permutación)}
+\label{permuta}
+\end{figure}
+
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %		  References				  %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -293,14 +516,6 @@ Universitaria & 0.261 & 0.544 \\
 \pagebreak
 \singlespacing
 \bibliography{References.bib}
-@misc{DANE2018,
-  author       = {Departamento Administrativo Nacional de Estadística (DANE)},
-  title        = {Medición de Pobreza Monetaria y Desigualdad 2018},
-  year         = {2018},
-  howpublished = {\url{https://microdatos.dane.gov.co/index.php/catalog/608/study-description}},
-  note         = {Accedido el 19 de octubre de 2025}
-}
-
 \pagebreak
 
 \end{document}
