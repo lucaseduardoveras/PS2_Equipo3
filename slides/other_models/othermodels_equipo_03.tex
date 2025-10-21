@@ -1,0 +1,209 @@
+% KYUSHU UNIVERSITY beamer template
+% Created by Yu in 2024
+
+\documentclass[11pt]{beamer}
+% You can use \documentclass[11pt,aspectratio=169]{beamer} 
+% to adjust the aspect ratio to 16:9.
+
+\usepackage{graphicx}
+\usepackage{xcolor}
+\definecolor{vino}{RGB}{128,0,32}
+\usepackage{listings}
+\usepackage[
+	backend=biber,
+	style=verbose,
+	sorting=ynt
+]{biblatex}
+
+\addbibresource{references.bib}
+
+\usetheme{Madrid}
+
+\author[Grupo 3]{Catalina Leal Rojas, Lucas Daniel Carrillo Aguirre, Lucas Eduardo Veras Costa}
+\title[Sección 2]{Comparación entre modelos}
+
+\setbeamertemplate{navigation symbols}{}
+
+
+% Uncomment the section below to show a table of contents slide every time a new section starts
+% \AtBeginSection[]
+% {
+%  \begin{frame}<beamer>
+%  \frametitle{Table of contents}
+%  \tableofcontents[currentsection]
+%  \end{frame}
+% }
+
+\usepackage{Kyushu}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\section{Example}
+
+\begin{frame}{Nuestro mejor modelo: \textbf{Random Forest}}
+\begin{itemize}
+\item Utilizamos de base un modelo lineal que incluye las 26 variables de la muestra. Inlcuimos variables que describen las condiciones demográficas, laborales, educativas y de vivienda de los hogares colombianos.
+\item Hiperparámetros:
+\begin{itemize}
+    \item Número de árboles y muestras bootstrap = \textcolor{blue}{1000} (valor fijo)
+    \item Número de variables seleccionadas aleatoriamente para cada partición = \textcolor{blue}{6} (de grilla [6,8,9,10] con cross-validation de 5 folds y F1 como métrica para optimizar)
+    \item Número mínimo de observaciones por nodo = \textcolor{blue}{1} (valor fijo)
+\end{itemize}
+\item Desbalance de clases: 
+\begin{itemize}
+    \item Umbral de clasificación = \textcolor{blue}{0.34} (el valor que maximiza el F1 dentro de muestra entre una grilla (0.05,0.95))
+    \item Downsampling
+\end{itemize}
+\item \textbf{Kaggle score:}\textcolor{blue}{0.63}
+\end{itemize}
+
+
+\end{frame}
+
+\begin{frame}{Top 5 otros modelos}
+    \begin{itemize}
+        \item Random Forest (Bagging) (\textcolor{blue}{0.63})
+        \item Logit (\textcolor{blue}{0.62})
+        \item Random Forest (diferente técnica para tratar el desbalance de clases) (\textcolor{blue}{0.61})
+        \item Lineal (\textcolor{blue}{0.61})
+    \item Elastic Net (\textcolor{blue}{0.60})
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Bagging (0.63)}
+\begin{itemize}
+    \item Hiperparámetros:
+\begin{itemize}
+    \item Número de árboles y muestras bootstrap = \textcolor{blue}{500} (valor fijo)
+    \item Número de variables seleccionadas aleatoriamente para cada partición = \textcolor{blue}{26} (todas las variables)
+    \item Número mínimo de observaciones por nodo = \textcolor{blue}{50} (de grilla [1,5,15,50] con cross-validation de 5 folds y F1 como métrica para optimizar)
+    \item \textit{Split Rule} = \textcolor{blue}{Hellinger} (de grilla [Gini, Hellinger] con cross-validation de 5 folds y F1 como métrica para optimizar)
+\end{itemize}
+\item Desbalance de clases: 
+\begin{itemize}
+    \item Umbral de clasificación = \textcolor{blue}{0.52} (el valor que maximiza el F1 dentro de muestra entre una grilla (0.05,0.95))
+    \item Downsampling
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Bagging (0.63)}
+    \item \textbf{¿Por qué da el mismo puntaje?:}
+    \begin{itemize}
+        \item Creemos que se alcanzó una región de estabilidad en el espacio de hiperparámetros (más árboles no mejoran mucho la predicción).
+        \item El número de observaciones en cada nodo podría ser un ejemplo del trade-off sesgo-varianza
+        \item \textbf{Buena selección de variables:} las variables con mayor poder predictivo tienden a ser seleccionadas de manera recurrente en las primeras divisiones de los árboles (bosques similares, incluso con distintos hiperparámetros). 
+        \item El criterio de división Hellinger (pensado para el desbalance de clases) pudo haber compensado la menor complejidad en términos de número de árboles y condiciones sobre los nodos terminales.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Logit (0.62)}
+\begin{itemize}
+    \item Se utilizó un modelo lineal que incluía las 26 variables creadas por el equipo
+    \item Desbalance de clases: 
+\begin{itemize}
+    \item Umbral de clasificación = \textcolor{blue}{0.21} (el valor que maximiza el AUC (ROC))
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Logit (0.62)}
+    \item \textbf{¿Por qué da casi el mismo puntaje?:}
+    \begin{itemize}
+    \item Variables altamente informativas y bien seleccionadas
+    \item Trade-off sesgo-varianza
+    \item En ambos se buscaron soluciones para el desbalance de clases. Parece indicar que solamente cambiar el umbral de clasificación puede mejorar sustancialmente cómo el modelo identifica la clase minoritaria ($F_1$)
+    \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Random Forest: otra técnica para el desbalance (0.61)}
+\begin{itemize}
+    \item Mismos hiperparámetros que el modelo ganado
+    \item La diferencia radica en que el umbral de clasificación fue elegido con la maximización de la AUC (ROC) igual a \textcolor{blue}{0.21}
+    \item En este caso, elegir la misma métrica que evalúa Kaggle, mejora marginalmente el desempeño del modelo.
+    
+\end{itemize}
+    
+\end{frame}
+
+\begin{frame}{Modelo de probabilidad lineal (0.61)}
+
+\begin{equation} % usa * si no quieres número
+\begin{aligned}
+Pobre_i = \beta_0 + \mathbf{X}_i'\boldsymbol{\beta}
++ \beta_1 Nper_i^2 + \beta_2 edad\_head_i^2 \\
++ \beta_3 (bin\_headWoman_i \times cat\_educHead_i) \\
+\quad + \beta_4 (edad\_head_i \times cat\_educHead_i)
++ \beta_5 (Nper_i \times t\_dependencia_i)
++ \varepsilon_i
+\end{aligned}
+\end{equation}
+
+\begin{itemize}
+\item Desbalance de clases:
+\begin{itemize}
+    \item Umbral de clasificación = \textcolor{blue}{0.27} (el valor que maximiza el AUC (ROC))
+\end{itemize}
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Modelo de probabilidad lineal (0.61)}
+ 
+    \begin{itemize}
+    \item Para compensar las predicciones fuera de [0,1] y la menor eficiencia del modelo lineal frente a Logit, se incluyeron términos cuadráticos e interacciones para añadir un poco más de complejidad
+    \item También creemos que el cálculo de un umbral de clasificación mejor ajustado a predecir los verdaderos positivos logra equiparar un modelo tan sencillo con técnicas como Random Forest
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Elastic Net (0.60)}
+\begin{itemize}
+    \item Hiperparámetros:
+\begin{itemize}
+    \item $\alpha$ = \textcolor{blue}{0.7} (grilla de 0 a 1, con saltos de 0.1). Este modelo es 70\% Lasso y 30\%  Ridge
+    \item $\lambda$ = \textcolor{blue}{0.001} (grilla de $10^{-3}$ a $10^3$, con 10 valores logarítmicamente espaciados)
+\end{itemize}
+\item Desbalance de clases: 
+\begin{itemize}
+    \item Umbral de clasificación = \textcolor{blue}{0.2} (el valor que maximiza el F1 dentro de muestra entre una grilla (0.05,0.95))
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Elastic Net (0.60)}
+\begin{itemize}
+ \item Aunque combina regularización LASSO y Ridge para manejar multicolinealidad y selección de variables, sigue siendo un modelo lineal en los parámetros. Esto, como ya vimos, tiene un desempeño ligeramente menor que otros modelos como Random Forest
+ \item Nuevamente, los resultados siguen cercanos a otros modelos más complejos gracias al tratamiento para el desbalance de observaciones entre pobres y no pobres.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Los que quedaron por fuera del top}
+\begin{itemize}
+    \item Gradient Boosting
+    \item Elastic net. De este último realizamos una prueba para ver los efectos del remuestreo en este modelo en particular:
+    \begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{template/ROC_NaiveBayes_sampling.png}
+\label{fig:mi_foto}
+\end{figure}
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Conclusión}
+\begin{itemize}
+  \item Los modelos presentaron desempeños muy similares, reflejando la alta calidad y relevancia de las variables construidas. 
+  \item El \textit{Random Forest} obtuvo el mejor rendimiento (\(F_1 = 0.63\)) por su capacidad para capturar relaciones no lineales e interacciones complejas. 
+  \item Modelos más simples como \textit{Logit} y el modelo lineal lograron resultados comparables, mostrando que la selección de variables fue más determinante que la complejidad del algoritmo. 
+  \item El tratamiento del desbalance de clases mediante remuestreo y calibración del umbral con \(F_1\) mejoró la identificación de los hogares pobres. 
+  \item Una buena preparación de datos y una calibración cuidadosa pueden igualar o superar la complejidad algorítmica en la predicción de pobreza. 
+\end{itemize}
+\end{frame}
+
+\end{document}
