@@ -1,8 +1,9 @@
 %-----------------------------------------------
 % PRESENTACIÓN BEAMER - UNIVERSIDAD DE KYUSHU
 %-----------------------------------------------
-\documentclass[11pt,aspectratio=169]{beamer}
+\documentclass[10pt]{beamer}
 
+\usepackage{tabularx}
 \usepackage{float}
 \usepackage{booktabs}
 \usepackage{graphicx}
@@ -10,26 +11,29 @@
 \usepackage{amsmath}
 \usepackage{multirow}
 \usepackage{caption}
-\captionsetup{font=footnotesize}
 \usepackage{lmodern}
 
-%-----------------------------------------------
-% COLORES Y TEMA
-%-----------------------------------------------
-\definecolor{vino}{RGB}{128,0,32}
-\usetheme{Madrid}
-\usecolortheme[named=vino]{structure}
+\usetheme{CambridgeUS}
+\usefonttheme{professionalfonts}
 
-\setbeamertemplate{navigation symbols}{}
-\setbeamertemplate{caption}[numbered]
+% --- Colores institucionales ---
+\definecolor{myNewColorA}{RGB}{139,0,0}
+\definecolor{myNewColorB}{RGB}{139,0,0}
+\definecolor{myNewColorC}{RGB}{139,0,0}
+\setbeamercolor*{palette primary}{bg=myNewColorC}
+\setbeamercolor*{palette secondary}{bg=myNewColorB, fg = white}
+\setbeamercolor*{palette tertiary}{bg=myNewColorA, fg = white}
+\setbeamercolor*{titlelike}{fg=myNewColorA}
+\setbeamercolor*{title}{bg=myNewColorA, fg = white}
+\setbeamercolor*{item}{fg=myNewColorA}
 
 %-----------------------------------------------
 % INFORMACIÓN DEL DOCUMENTO
 %-----------------------------------------------
-\title[Datos]{Sección 1: Datos}
-\author[Grupo 3]{Catalina Leal Rojas, Lucas Daniel Carrillo Aguirre, \\ Lucas Eduardo Veras Costa}
-\date{}
-
+\title{Mejor Modelo: Random Forest}
+\author{Equipo 03 — Catalina Leal, Lucas D. Carrillo, Lucas E. Veras}
+\institute{Big Data y Machine Learning — PS2}
+\date{\today}
 %-----------------------------------------------
 \begin{document}
 
@@ -37,7 +41,41 @@
 \begin{frame}
 \titlepage
 \end{frame}
+% ===================== SLIDE 1 (OBLIGATORIA) =====================
+\begin{frame}{Descripción General del Mejor Modelo}
+\small
+\begin{tabularx}{\textwidth}{@{}X X@{}}
+\multicolumn{2}{c}{\Large \textbf{Random Forest}}\\
+\midrule
+\multicolumn{1}{c}{\textbf{Versión 1: Bagging (Hellinger)}} & \multicolumn{1}{c}{\textbf{Versión 2: Selección de variables (Gini)}}\\
+\midrule
+\begin{minipage}[t]{\linewidth}
+\begin{itemize}
+  \item \texttt{num.trees} = 500
+  \item \texttt{mtry} = 26 (todas las variables)
+  \item \texttt{node.size} = 50
+  \item \texttt{split.rule} = Hellinger
+  \item Umbral $\tau^{*} = 0.522$ (max F1 en CV)
+\end{itemize}
+\end{minipage}
+&
+\begin{minipage}[t]{\linewidth}
+\begin{itemize}
+  \item \texttt{num.trees} = 1000
+  \item \texttt{mtry} = 6
+  \item \texttt{node.size} = 1
+  \item \texttt{split.rule} = Gini
+  \item Umbral $\tau^{*} = 0.340$ (max F1 en CV)
+\end{itemize}
+\end{minipage}
+\\
+\midrule
+\multicolumn{2}{c}{\textbf{Kaggle (Public Leaderboard): F1 = 0.63 (ambos modelos)}}\\
+\bottomrule
+\end{tabularx}
+\end{frame}
 
+% ===================== SLIDE 2 =====================
 %-----------------------------------------------
 \begin{frame}{Fuente de datos}
 \small
@@ -55,26 +93,13 @@
 \begin{itemize}
     \item Se integraron las bases de hogares y personas mediante el identificador único \texttt{id}.
     \item Se excluyeron las variables con más del 40\% de valores faltantes, evitando imputaciones poco confiables.
-    \item La selección final se basó en criterios teóricos y empíricos sobre los determinantes de la pobreza.
+\item La selección final se basó en criterios definidos por el equipo a partir de supuestos teóricos y empíricos sobre los determinantes de la pobreza.
     \item Las variables de ingreso del conjunto de entrenamiento no se incluyeron, ya que no estaban disponibles en el conjunto de prueba.
 \end{itemize}
 
 \medskip
 \textbf{Tamaño muestral:} \\
 164.959 hogares en el conjunto de entrenamiento y 66.168 en el de prueba (40\% del primero).
-\end{frame}
-
-%-----------------------------------------------
-\begin{frame}{Variables derivadas del nivel individual}
-\small
-\begin{itemize}
-    \item Las variables provenientes de la base de personas corresponden a:
-    \begin{itemize}
-        \item Sumas o proporciones de individuos que cumplen determinada condición (ocupados, inactivos, con educación superior, etc.).
-        \item Características del jefe o jefa del hogar (sexo, edad, ocupación, condición laboral).
-    \end{itemize}
-    \item Estas medidas permiten aproximar la \textbf{estructura demográfica}, el \textbf{capital humano} y la \textbf{inserción laboral} del hogar.
-\end{itemize}
 \end{frame}
 
 %-----------------------------------------------
@@ -107,7 +132,7 @@
         \item Jefe(a) de hogar mujer (binaria).
         \item Tasa de dependencia:
         \[
-        t_{dep} = \frac{\text{Población <15 o >65}}{\text{Población en edad de trabajar}}
+        t_{dep} = \frac{\text{Población $<$15 o $>$65}}{\text{Población en edad de trabajar}}
         \]
     \end{itemize}
     \item Variables educativas:

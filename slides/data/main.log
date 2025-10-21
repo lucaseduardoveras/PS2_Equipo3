@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.8.29)  20 OCT 2025 20:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.8.29)  20 OCT 2025 20:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -161,8 +161,8 @@ cs.code.tex) (C:\Program Files\MiKTeX\tex/generic/pgf/math\pgfmathcalc.code.tex
 ) (C:\Program Files\MiKTeX\tex/generic/pgf/math\pgfmathfloat.code.tex
 \c@pgfmathroundto@lastzeros=\count309
 )))
-(C:\Program Files\MiKTeX\tex/latex/base\size11.clo
-File: size11.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
+(C:\Program Files\MiKTeX\tex/latex/base\size10.clo
+File: size10.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
 )
 (C:\Program Files\MiKTeX\tex/latex/pgf/basiclayer\pgfcore.sty
 (C:\Program Files\MiKTeX\tex/latex/graphics\graphicx.sty
@@ -670,62 +670,83 @@ Package: amsthm 2020/05/29 v2.20.6
 \beamer@dimb=\dimen301
 )
 (C:\Program Files\MiKTeX\tex/latex/beamer\beamerouterthemedefault.sty)))
+(C:\Program Files\MiKTeX\tex/latex/tools\tabularx.sty
+Package: tabularx 2023/12/11 v2.12a `tabularx' package (DPC)
+
+(C:\Program Files\MiKTeX\tex/latex/tools\array.sty
+Package: array 2025/06/08 v2.6j Tabular extension package (FMi)
+\col@sep=\dimen302
+\ar@mcellbox=\box78
+\extrarowheight=\dimen303
+\NC@list=\toks46
+\extratabsurround=\skip67
+\backup@length=\skip68
+\ar@cellbox=\box79
+)
+\TX@col@width=\dimen304
+\TX@old@table=\dimen305
+\TX@old@col=\dimen306
+\TX@target=\dimen307
+\TX@delta=\dimen308
+\TX@cols=\count358
+\TX@ftn=\toks47
+)
 (C:\Program Files\MiKTeX\tex/latex/float\float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count358
-\float@exts=\toks46
-\float@box=\box78
-\@float@everytoks=\toks47
-\@floatcapt=\box79
+\c@float@type=\count359
+\float@exts=\toks48
+\float@box=\box80
+\@float@everytoks=\toks49
+\@floatcapt=\box81
 )
 (C:\Program Files\MiKTeX\tex/latex/booktabs\booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen302
-\lightrulewidth=\dimen303
-\cmidrulewidth=\dimen304
-\belowrulesep=\dimen305
-\belowbottomsep=\dimen306
-\aboverulesep=\dimen307
-\abovetopsep=\dimen308
-\cmidrulesep=\dimen309
-\cmidrulekern=\dimen310
-\defaultaddspace=\dimen311
-\@cmidla=\count359
-\@cmidlb=\count360
-\@aboverulesep=\dimen312
-\@belowrulesep=\dimen313
-\@thisruleclass=\count361
-\@lastruleclass=\count362
-\@thisrulewidth=\dimen314
+\heavyrulewidth=\dimen309
+\lightrulewidth=\dimen310
+\cmidrulewidth=\dimen311
+\belowrulesep=\dimen312
+\belowbottomsep=\dimen313
+\aboverulesep=\dimen314
+\abovetopsep=\dimen315
+\cmidrulesep=\dimen316
+\cmidrulekern=\dimen317
+\defaultaddspace=\dimen318
+\@cmidla=\count360
+\@cmidlb=\count361
+\@aboverulesep=\dimen319
+\@belowrulesep=\dimen320
+\@thisruleclass=\count362
+\@lastruleclass=\count363
+\@thisrulewidth=\dimen321
 )
 (C:\Program Files\MiKTeX\tex/latex/multirow\multirow.sty
 Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
-\multirow@colwidth=\skip67
-\multirow@cntb=\count363
-\multirow@dima=\skip68
-\bigstrutjot=\dimen315
+\multirow@colwidth=\skip69
+\multirow@cntb=\count364
+\multirow@dima=\skip70
+\bigstrutjot=\dimen322
 )
 (C:\Program Files\MiKTeX\tex/latex/caption\caption.sty
 Package: caption 2023/08/05 v3.6o Customizing captions (AR)
 
 (C:\Program Files\MiKTeX\tex/latex/caption\caption3.sty
 Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
-\caption@tempdima=\dimen316
-\captionmargin=\dimen317
-\caption@leftmargin=\dimen318
-\caption@rightmargin=\dimen319
-\caption@width=\dimen320
-\caption@indent=\dimen321
-\caption@parindent=\dimen322
-\caption@hangindent=\dimen323
+\caption@tempdima=\dimen323
+\captionmargin=\dimen324
+\caption@leftmargin=\dimen325
+\caption@rightmargin=\dimen326
+\caption@width=\dimen327
+\caption@indent=\dimen328
+\caption@parindent=\dimen329
+\caption@hangindent=\dimen330
 Package caption Info: beamer document class detected.
 
 (C:\Program Files\MiKTeX\tex/latex/caption\caption-beamer.sto
 File: caption-beamer.sto 2022/01/06 v2.0c Adaption of the caption package to th
 e beamer document classes (AR)
 ))
-\c@caption@flags=\count364
-\c@continuedfloat=\count365
+\c@caption@flags=\count365
+\c@continuedfloat=\count366
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: Hyperref support is turned off
@@ -766,45 +787,40 @@ LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
 )
-(C:\Program Files\MiKTeX\tex/latex/beamer\beamerthemeMadrid.sty
-(C:\Program Files\MiKTeX\tex/latex/beamer\beamercolorthemewhale.sty)
-(C:\Program Files\MiKTeX\tex/latex/beamer\beamercolorthemeorchid.sty)
+(C:\Program Files\MiKTeX\tex/latex/beamer\beamerthemeCambridgeUS.sty
 (C:\Program Files\MiKTeX\tex/latex/beamer\beamerinnerthemerounded.sty)
-(C:\Program Files\MiKTeX\tex/latex/beamer\beamerouterthemeinfolines.sty))
-(C:\Program Files\MiKTeX\tex/latex/beamer\beamercolorthemestructure.sty)
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\\' on input line 30.
-
+(C:\Program Files\MiKTeX\tex/latex/beamer\beamerouterthemeinfolines.sty)
+(C:\Program Files\MiKTeX\tex/latex/beamer\beamercolorthemebeaver.sty))
+(C:\Program Files\MiKTeX\tex/latex/beamer\beamerfontthemeprofessionalfonts.sty)
 LaTeX Font Info:    Trying to load font information for OT1+lmss on input line 
-34.
+38.
 (C:\Program Files\MiKTeX\tex/latex/lm\ot1lmss.fd
 File: ot1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 (C:\Program Files\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-04-14 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count366
+\l__color_backend_stack_int=\count367
 ) (main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -814,23 +830,23 @@ LaTeX Font Info:    ... okay on input line 34.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: includehead includefoot 
-* h-part:(L,W,R)=(10.95003pt, 433.34402pt, 10.95003pt)
-* v-part:(T,H,B)=(0.0pt, 256.0748pt, 0.0pt)
-* \paperwidth=455.24408pt
-* \paperheight=256.0748pt
-* \textwidth=433.34402pt
-* \textheight=227.62207pt
-* \oddsidemargin=-61.31996pt
-* \evensidemargin=-61.31996pt
+* h-part:(L,W,R)=(10.00002pt, 344.19533pt, 10.00002pt)
+* v-part:(T,H,B)=(0.0pt, 273.14662pt, 0.0pt)
+* \paperwidth=364.19536pt
+* \paperheight=273.14662pt
+* \textwidth=344.19533pt
+* \textheight=244.6939pt
+* \oddsidemargin=-62.26997pt
+* \evensidemargin=-62.26997pt
 * \topmargin=-72.26999pt
 * \headheight=14.22636pt
 * \headsep=0.0pt
-* \topskip=11.0pt
+* \topskip=10.0pt
 * \footskip=14.22636pt
-* \marginparwidth=4.0pt
-* \marginparsep=10.0pt
+* \marginparwidth=3.0pt
+* \marginparsep=11.0pt
 * \columnsep=10.0pt
-* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
 * \mag=1000
@@ -842,17 +858,17 @@ LaTeX Font Info:    ... okay on input line 34.
 
 (C:\Program Files\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count367
-\scratchdimen=\dimen324
-\scratchbox=\box80
-\nofMPsegments=\count368
-\nofMParguments=\count369
-\everyMPshowfont=\toks48
-\MPscratchCnt=\count370
-\MPscratchDim=\dimen325
-\MPnumerator=\count371
-\makeMPintoPDFobject=\count372
-\everyMPtoPDFconversion=\toks49
+\scratchcounter=\count368
+\scratchdimen=\dimen331
+\scratchbox=\box82
+\nofMPsegments=\count369
+\nofMParguments=\count370
+\everyMPshowfont=\toks50
+\MPscratchCnt=\count371
+\MPscratchDim=\dimen332
+\MPnumerator=\count372
+\makeMPintoPDFobject=\count373
+\everyMPtoPDFconversion=\toks51
 ) (C:\Program Files\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -861,58 +877,12 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 (C:\Program Files\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-Package hyperref Info: Link coloring OFF on input line 34.
+Package hyperref Info: Link coloring OFF on input line 38.
  (main.out)
 (main.out)
 \@outlinefile=\write5
 \openout5 = `main.out'.
 
-LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/lmr/m/n --> OT1/cmss/m/n on input line 34.
-LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/lmr/bx/n --> OT1/cmss/b/n on input line 34.
-LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/lmss/m/n on input line 34.
-LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmss/b/n --> OT1/lmss/b/n on input line 34.
-\symnumbers=\mathgroup6
-\sympureletters=\mathgroup7
-LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/lmss/m/n --> OT1/lmr/m/n on input line 34.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 34.
-LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/lmr/bx/n --> OT1/lmss/b/n on input line 34.
-LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/lmr/bx/n --> OT1/lmss/b/n on input line 34.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 34.
-LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/lmss/m/n --> OT1/lmss/m/n on input line 34.
-LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/lmss/bx/n --> OT1/lmss/m/n on input line 34.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 34.
-LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/lmr/m/it --> OT1/lmss/m/it on input line 34.
-LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/lmr/bx/it --> OT1/lmss/m/it on input line 34.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 34.
-LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/lmtt/m/n --> OT1/lmtt/m/n on input line 34.
-LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/lmtt/m/n --> OT1/lmtt/m/n on input line 34.
-LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  OT1/lmss/m/n --> OT1/lmss/b/n on input line 34.
-LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  OT1/lmss/m/it --> OT1/lmss/b/it on input line 34.
-LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/lmss/b/n --> OT1/lmr/b/n on input line 34.
-LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/lmss/b/n --> OT1/lmss/b/n on input line 34.
-LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/lmss/m/n --> OT1/lmss/b/n on input line 34.
-LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/lmss/m/it --> OT1/lmss/b/it on input line 34.
-LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/lmtt/m/n --> OT1/lmtt/b/n on input line 34.
 
 (C:\Program Files\MiKTeX\tex/latex/translator\translator-basic-dictionary-Engli
 sh.dict
@@ -941,98 +911,158 @@ Dictionary: translator-theorem-dictionary, Language: English
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
  (main.nav)
+Overfull \hbox (105.62766pt too wide) in paragraph at lines 38--38
+ [][]  \OT1/lmss/m/n/5 ([])  
+ []
+
+
+Overfull \hbox (105.62766pt too wide) in paragraph at lines 43--43
+ [][]  \OT1/lmss/m/n/5 ([])  
+ []
+
+
+
+
+Overfull \hbox (105.62766pt too wide) has occurred while \output is active
+ [][]  \OT1/lmss/m/n/5 ([])  
+ []
 
 [1
 
 {C:/Users/lveras/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Program F
 iles/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}]
-LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <10> not available
-(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 50.
+Overfull \hbox (105.62766pt too wide) in paragraph at lines 76--76
+ [][]  \OT1/lmss/m/n/5 ([])  
+ []
 
+(C:\Program Files\MiKTeX\tex/latex/lm\ot1lmr.fd)
+(C:\Program Files\MiKTeX\tex/latex/lm\omllmm.fd)
+(C:\Program Files\MiKTeX\tex/latex/lm\omslmsy.fd)
+(C:\Program Files\MiKTeX\tex/latex/lm\omxlmex.fd)
+(C:\Program Files\MiKTeX\tex/latex/amsfonts\umsa.fd)
+(C:\Program Files\MiKTeX\tex/latex/amsfonts\umsb.fd)
+(C:\Program Files\MiKTeX\tex/latex/lm\ot1lmtt.fd)
+
+
+Overfull \hbox (105.62766pt too wide) has occurred while \output is active
+ [][]  \OT1/lmss/m/n/5 ([])  
+ []
 
 [2
 
-]
-LaTeX Font Info:    Trying to load font information for OT1+lmtt on input line 
-65.
- (C:\Program Files\MiKTeX\tex/latex/lm\ot1lmtt.fd
-File: ot1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
+{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-rmtt.enc}{C:/Program Files/MiKTe
+X/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/
+lm-mathsy.enc}]
+Overfull \hbox (105.62766pt too wide) in paragraph at lines 88--88
+ [][]  \OT1/lmss/m/n/5 ([])  
+ []
+
+LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <9> not available
+(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 88.
+
+
+
+Overfull \hbox (105.62766pt too wide) has occurred while \output is active
+ [][]  \OT1/lmss/m/n/5 ([])  
+ []
 
 [3
 
-{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-rmtt.enc}]
+]
+Overfull \hbox (105.62766pt too wide) in paragraph at lines 103--103
+ [][]  \OT1/lmss/m/n/5 ([])  
+ []
+
+
+
+
+Overfull \hbox (105.62766pt too wide) has occurred while \output is active
+ [][]  \OT1/lmss/m/n/5 ([])  
+ []
 
 [4
 
 ]
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 9
-8.
- (C:\Program Files\MiKTeX\tex/latex/lm\omllmm.fd
-File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-98.
-
-(C:\Program Files\MiKTeX\tex/latex/lm\omslmsy.fd
-File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-98.
-
-(C:\Program Files\MiKTeX\tex/latex/lm\omxlmex.fd
-File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 98.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 98.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 98.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 98.
+Overfull \hbox (105.62766pt too wide) in paragraph at lines 123--123
+ [][]  \OT1/lmss/m/n/5 ([])  
+ []
 
 
-(C:\Program Files\MiKTeX\tex/latex/amsfonts\umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 98.
 
 
-(C:\Program Files\MiKTeX\tex/latex/amsfonts\umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <7> not available
-(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 98.
-LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <5> not available
-(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 98.
-
+Overfull \hbox (105.62766pt too wide) has occurred while \output is active
+ [][]  \OT1/lmss/m/n/5 ([])  
+ []
 
 [5
 
-{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Program Files/MiK
-TeX/fonts/enc/dvips/lm/lm-mathsy.enc}]
+]
+Overfull \hbox (105.62766pt too wide) in paragraph at lines 145--145
+ [][]  \OT1/lmss/m/n/5 ([])  
+ []
+
+
+
+
+Overfull \hbox (105.62766pt too wide) has occurred while \output is active
+ [][]  \OT1/lmss/m/n/5 ([])  
+ []
 
 [6
 
 ]
+Overfull \hbox (105.62766pt too wide) in paragraph at lines 166--166
+ [][]  \OT1/lmss/m/n/5 ([])  
+ []
+
+
+
+
+Overfull \hbox (105.62766pt too wide) has occurred while \output is active
+ [][]  \OT1/lmss/m/n/5 ([])  
+ []
 
 [7
 
 ]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 182.
-LaTeX Font Info:    Font shape `OT1/lmss/m/it' in size <6> not available
-(Font)              Font shape `OT1/lmss/m/sl' tried instead on input line 182.
+Overfull \hbox (105.62766pt too wide) in paragraph at lines 207--207
+ [][]  \OT1/lmss/m/n/5 ([])  
+ []
 
 
+
+
+Overfull \hbox (105.62766pt too wide) has occurred while \output is active
+ [][]  \OT1/lmss/m/n/5 ([])  
+ []
 
 [8
 
 ]
+Overfull \hbox (105.62766pt too wide) in paragraph at lines 250--250
+ [][]  \OT1/lmss/m/n/5 ([])  
+ []
+
+
+
+
+Overfull \hbox (105.62766pt too wide) has occurred while \output is active
+ [][]  \OT1/lmss/m/n/5 ([])  
+ []
 
 [9
 
 ]
+Overfull \hbox (105.62766pt too wide) in paragraph at lines 260--260
+ [][]  \OT1/lmss/m/n/5 ([])  
+ []
+
+
+
+
+Overfull \hbox (105.62766pt too wide) has occurred while \output is active
+ [][]  \OT1/lmss/m/n/5 ([])  
+ []
 
 [10
 
@@ -1055,24 +1085,25 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 23519 strings out of 468219
- 453819 string characters out of 5442933
- 835617 words of memory out of 5000000
- 51529 multiletter control sequences out of 15000+600000
- 673213 words of font info for 75 fonts, out of 8000000 for 9000
+ 23635 strings out of 468219
+ 455393 string characters out of 5442933
+ 841956 words of memory out of 5000000
+ 51640 multiletter control sequences out of 15000+600000
+ 669655 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,15n,123p,381b,619s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Program Files/M
-iKTeX/fonts/type1/public/lm/lmss10.pfb><C:/Program Files/MiKTeX/fonts/type1/pub
-lic/lm/lmss12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmss8.pfb><C:/
-Program Files/MiKTeX/fonts/type1/public/lm/lmss9.pfb><C:/Program Files/MiKTeX/f
-onts/type1/public/lm/lmssbx10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/l
-m/lmsso10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsso8.pfb><C:/Pro
-gram Files/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX/fon
-ts/type1/public/lm/lmtt10.pfb>
-Output written on main.pdf (10 pages, 216551 bytes).
+ 128i,16n,123p,381b,700s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi6.pfb><C:/Program Files/Mi
+KTeX/fonts/type1/public/lm/lmmi9.pfb><C:/Program Files/MiKTeX/fonts/type1/publi
+c/lm/lmr9.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmss10.pfb><C:/Pro
+gram Files/MiKTeX/fonts/type1/public/lm/lmss12.pfb><C:/Program Files/MiKTeX/fon
+ts/type1/public/lm/lmss8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lms
+s9.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb><C:/Program 
+Files/MiKTeX/fonts/type1/public/lm/lmsso9.pfb><C:/Program Files/MiKTeX/fonts/ty
+pe1/public/lm/lmsy6.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmsy9.pf
+b><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmtt9.pfb>
+Output written on main.pdf (10 pages, 278633 bytes).
 PDF statistics:
- 164 PDF objects out of 1000 (max. 8388607)
+ 374 PDF objects out of 1000 (max. 8388607)
  22 named destinations out of 1000 (max. 500000)
  91 words of extra memory for PDF output out of 10000 (max. 10000000)
 
