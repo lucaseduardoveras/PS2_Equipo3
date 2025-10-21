@@ -1,0 +1,263 @@
+%-----------------------------------------------
+% PRESENTACIÓN BEAMER - UNIVERSIDAD DE KYUSHU
+%-----------------------------------------------
+\documentclass[10pt]{beamer}
+
+\usepackage{tabularx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{lmodern}
+
+\usetheme{CambridgeUS}
+\usefonttheme{professionalfonts}
+
+% --- Colores institucionales ---
+\definecolor{myNewColorA}{RGB}{139,0,0}
+\definecolor{myNewColorB}{RGB}{139,0,0}
+\definecolor{myNewColorC}{RGB}{139,0,0}
+\setbeamercolor*{palette primary}{bg=myNewColorC}
+\setbeamercolor*{palette secondary}{bg=myNewColorB, fg = white}
+\setbeamercolor*{palette tertiary}{bg=myNewColorA, fg = white}
+\setbeamercolor*{titlelike}{fg=myNewColorA}
+\setbeamercolor*{title}{bg=myNewColorA, fg = white}
+\setbeamercolor*{item}{fg=myNewColorA}
+
+%-----------------------------------------------
+% INFORMACIÓN DEL DOCUMENTO
+%-----------------------------------------------
+\title{Mejor Modelo: Random Forest}
+\author{Equipo 03 — Catalina Leal, Lucas D. Carrillo, Lucas E. Veras}
+\institute{Big Data y Machine Learning — PS2}
+\date{\today}
+%-----------------------------------------------
+\begin{document}
+
+% PORTADA
+\begin{frame}
+\titlepage
+\end{frame}
+% ===================== SLIDE 1 (OBLIGATORIA) =====================
+\begin{frame}{Descripción General del Mejor Modelo}
+\small
+\begin{tabularx}{\textwidth}{@{}X X@{}}
+\multicolumn{2}{c}{\Large \textbf{Random Forest}}\\
+\midrule
+\multicolumn{1}{c}{\textbf{Versión 1: Bagging (Hellinger)}} & \multicolumn{1}{c}{\textbf{Versión 2: Selección de variables (Gini)}}\\
+\midrule
+\begin{minipage}[t]{\linewidth}
+\begin{itemize}
+  \item \texttt{num.trees} = 500
+  \item \texttt{mtry} = 26 (todas las variables)
+  \item \texttt{node.size} = 50
+  \item \texttt{split.rule} = Hellinger
+  \item Umbral $\tau^{*} = 0.522$ (max F1 en CV)
+\end{itemize}
+\end{minipage}
+&
+\begin{minipage}[t]{\linewidth}
+\begin{itemize}
+  \item \texttt{num.trees} = 1000
+  \item \texttt{mtry} = 6
+  \item \texttt{node.size} = 1
+  \item \texttt{split.rule} = Gini
+  \item Umbral $\tau^{*} = 0.340$ (max F1 en CV)
+\end{itemize}
+\end{minipage}
+\\
+\midrule
+\multicolumn{2}{c}{\textbf{Kaggle (Public Leaderboard): F1 = 0.63 (ambos modelos)}}\\
+\bottomrule
+\end{tabularx}
+\end{frame}
+
+% ===================== SLIDE 2 =====================
+%-----------------------------------------------
+\begin{frame}{Fuente de datos}
+\small
+\begin{itemize}
+    \item Los datos provienen de la \textit{Medición de Pobreza Monetaria y Desigualdad 2018}, elaborada por el \textit{Departamento Administrativo Nacional de Estadística (DANE)} en el marco de la misión \textit{Empalme de las Series de Empleo, Pobreza y Desigualdad (MESE)}.
+    \item Esta iniciativa busca unificar y armonizar las series de empleo, pobreza y desigualdad en Colombia, fortaleciendo la consistencia de los indicadores sociales.
+    \item La fuente contiene información detallada sobre ingresos, educación, ocupación, vivienda y composición familiar, tanto a nivel individual como de hogar.
+    \item Los datos se obtuvieron de la plataforma \textit{Kaggle}, donde se desarrolla una competencia para predecir la condición de pobreza.
+\end{itemize}
+\end{frame}
+
+%-----------------------------------------------
+\begin{frame}{Procesamiento y limpieza de datos}
+\small
+\begin{itemize}
+    \item Se integraron las bases de hogares y personas mediante el identificador único \texttt{id}.
+    \item Se excluyeron las variables con más del 40\% de valores faltantes, evitando imputaciones poco confiables.
+\item La selección final se basó en criterios definidos por el equipo a partir de supuestos teóricos y empíricos sobre los determinantes de la pobreza.
+    \item Las variables de ingreso del conjunto de entrenamiento no se incluyeron, ya que no estaban disponibles en el conjunto de prueba.
+\end{itemize}
+
+\medskip
+\textbf{Tamaño muestral:} \\
+164.959 hogares en el conjunto de entrenamiento y 66.168 en el de prueba (40\% del primero).
+\end{frame}
+
+%-----------------------------------------------
+\begin{frame}{Variables del mercado laboral}
+\small
+\begin{itemize}
+    \item Se construyeron las tasas de \textbf{ocupación} e \textbf{inactividad}, definidas como:
+    \[
+    t_{ocu} = \frac{\text{Ocupados}}{\text{Personas en edad de trabajar}}, \quad
+    t_{inac} = \frac{\text{Inactivos}}{\text{Personas en edad de trabajar}}
+    \]
+    \item Hipótesis: mayor participación laboral $\Rightarrow$ menor probabilidad de pobreza.
+    \item Otras variables laborales incluidas:
+    \begin{itemize}
+        \item Horas totales trabajadas por los miembros del hogar.
+        \item Número de trabajadores por cuenta propia.
+        \item Dicotómica: jefe(a) de hogar cuenta propia.
+    \end{itemize}
+    \item Estas variables reflejan la \textbf{resiliencia económica} del hogar ante choques del mercado laboral.
+\end{itemize}
+\end{frame}
+
+%-----------------------------------------------
+\begin{frame}{Características socioeconómicas y demográficas}
+\small
+\begin{itemize}
+    \item Variables demográficas y de género:
+    \begin{itemize}
+        \item Número de mujeres.
+        \item Jefe(a) de hogar mujer (binaria).
+        \item Tasa de dependencia:
+        \[
+        t_{dep} = \frac{\text{Población $<$15 o $>$65}}{\text{Población en edad de trabajar}}
+        \]
+    \end{itemize}
+    \item Variables educativas:
+    \begin{itemize}
+        \item Proporción de personas con educación superior.
+        \item Nivel educativo máximo alcanzado en el hogar.
+    \end{itemize}
+    \item Estas medidas capturan el \textbf{capital humano} y su efecto sobre los ingresos y la movilidad social.
+\end{itemize}
+\end{frame}
+
+%-----------------------------------------------
+\begin{frame}{Condiciones habitacionales y geográficas}
+\small
+\begin{itemize}
+    \item Variables de vivienda:
+    \begin{itemize}
+        \item Número de habitaciones.
+        \item Tipo de vivienda (propia, arrendada, usufructo, ocupada sin título).
+    \end{itemize}
+    \item Variable demográfica de control:
+    \begin{itemize}
+        \item Número total de personas en el hogar.
+    \end{itemize}
+    \item Variable geográfica:
+    \begin{itemize}
+        \item Dominio (área metropolitana o rural).
+    \end{itemize}
+    \item Estas variables complementan las dimensiones laboral y educativa, reflejando el \textbf{bienestar material} y las \textbf{condiciones estructurales del hogar}.
+\end{itemize}
+\end{frame}
+
+%-----------------------------------------------
+\begin{frame}{Estadísticas descriptivas}
+
+\tiny % Fuente aún más pequeña
+\begin{table}[H]
+\centering
+\caption*{Estadísticas descriptivas para las variables numéricas}
+\resizebox{0.6\textwidth}{!}{ % Se reduce al 80% del ancho
+\begin{tabular}{lcccccc}
+\toprule
+\multirow{2}{*}{\textbf{Variable}} & 
+\multicolumn{2}{c}{\textbf{Media}} & 
+\multicolumn{2}{c}{\textbf{Mediana}} & 
+\multicolumn{2}{c}{\textbf{Desv.~Est.}} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
+ & Pob. & No Pob. & Pob. & No Pob. & Pob. & No Pob. \\
+\midrule
+N. Personas          & 4.13 & 3.08 & 4.00 & 3.00 & 2.03 & 1.64 \\
+N. Habitaciones      & 3.03 & 3.48 & 3.00 & 3.00 & 1.13 & 1.25 \\
+Edad Jefe            & 46.77 & 50.32 & 45.00 & 50.00 & 16.24 & 16.35 \\
+H. Trab. Jefe        & 28.62 & 34.49 & 32.00 & 42.00 & 25.23 & 24.67 \\
+N. Mujeres           & 2.24 & 1.62 & 2.00 & 1.00 & 1.35 & 1.10 \\
+N. Menores           & 1.55 & 0.62 & 1.00 & 0.00 & 1.34 & 0.86 \\
+N. Mayores           & 0.27 & 0.33 & 0.00 & 0.00 & 0.57 & 0.61 \\
+N. Educ. Sup.        & 0.36 & 0.88 & 0.00 & 1.00 & 0.69 & 1.00 \\
+N. Cta. Propia       & 0.86 & 0.65 & 1.00 & 0.00 & 0.85 & 0.80 \\
+Horas Trab. Tot.     & 52.46 & 71.11 & 48.00 & 60.00 & 43.68 & 49.59 \\
+N. Ocupados          & 1.26 & 1.57 & 1.00 & 1.00 & 0.99 & 1.03 \\
+N. PET               & 3.02 & 2.64 & 3.00 & 2.00 & 1.53 & 1.35 \\
+N. Inactivos         & 1.45 & 0.92 & 1.00 & 1.00 & 1.17 & 0.96 \\
+Tasa Ocup.           & 0.43 & 0.62 & 0.50 & 0.67 & 0.31 & 0.34 \\
+Tasa Inac.           & 0.46 & 0.33 & 0.50 & 0.33 & 0.31 & 0.33 \\
+Tasa Educ. Sup.      & 0.13 & 0.35 & 0.00 & 0.25 & 0.25 & 0.38 \\
+Tasa Dependencia     & 67.42 & 37.84 & 60.00 & 33.33 & 52.86 & 39.45 \\
+Tasa Cta. Propia     & 0.30 & 0.26 & 0.25 & 0.00 & 0.29 & 0.33 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\end{frame}
+%-----------------------------------------------
+%-----------------------------------------------
+\begin{frame}{Estadísticas descriptivas}
+
+\tiny % Fuente aún más pequeña
+\begin{table}[htbp]\centering
+\caption{Promedios de variables categóricas por condición de pobreza}
+\resizebox{0.3\textwidth}{!}{
+\label{tab:catvars_pobreza}
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Variable} & \textbf{Pobre} & \textbf{No Pobre} \\
+\midrule
+Jefe del Hogar Mujer    & 0.468 & 0.406 \\
+Jefe del Hogar Ocupado & 0.643 & 0.727 \\
+Jefe del Hogar Cuentra Propia  & 0.473 & 0.322 \\
+\midrule
+\textit{Tipo de vivienda} &  &  \\
+Propia Totalmente Pagada   & 0.275 & 0.403 \\
+Propia la Están Pagando   & 0.017 & 0.038 \\
+En arriendo o subarriendo  & 0.438 & 0.379 \\
+En usufructo               & 0.158 & 0.149 \\
+posesión sin título        & 0.111 & 0.030 \\
+\midrule
+\textit{Nivel educativo del jefe del hogar} &  &  \\
+Preescolas   & 0.0002 & 0.00003 \\
+Primaria    & 0.378  & 0.259 \\
+Medias        & 0.253  & 0.263 \\
+Secundaria   & 0.162  & 0.124 \\
+Universitaria & 0.103  & 0.315 \\
+\midrule
+\textit{Máximo nivel educativo del hogar} &  &  \\
+Preescolar    & 0.001 & 0.0001 \\
+Primaria   & 0.128 & 0.093 \\
+Media        & 0.385 & 0.264 \\
+Secundaria    & 0.201 & 0.087 \\
+Universitaria & 0.261 & 0.544 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\end{frame}
+%-----------------------------------------------
+\begin{frame}{Conclusiones descriptivas}
+\small
+\begin{itemize}
+    \item Los hogares pobres presentan mayor número de integrantes, más menores y mayores tasas de inactividad.
+    \item Exhiben menor nivel educativo y mayor proporción de trabajo por cuenta propia.
+    \item Los hogares no pobres muestran una inserción laboral más estable y mejores condiciones de vivienda.
+    \item Estas diferencias confirman la coherencia teórica de las variables incluidas en el modelo predictivo.
+\end{itemize}
+\end{frame}
+
+%-----------------------------------------------
+\end{document}
