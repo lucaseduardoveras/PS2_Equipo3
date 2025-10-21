@@ -1,0 +1,170 @@
+\documentclass[10pt]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{bm}
+\usepackage{mathtools}
+\usepackage{utopia}
+\usepackage{hyperref}
+
+\usetheme{CambridgeUS}
+\usefonttheme{professionalfonts}
+
+% --- Colores institucionales ---
+\definecolor{myNewColorA}{RGB}{139,0,0}
+\definecolor{myNewColorB}{RGB}{139,0,0}
+\definecolor{myNewColorC}{RGB}{139,0,0}
+\setbeamercolor*{palette primary}{bg=myNewColorC}
+\setbeamercolor*{palette secondary}{bg=myNewColorB, fg = white}
+\setbeamercolor*{palette tertiary}{bg=myNewColorA, fg = white}
+\setbeamercolor*{titlelike}{fg=myNewColorA}
+\setbeamercolor*{title}{bg=myNewColorA, fg = white}
+\setbeamercolor*{item}{fg=myNewColorA}
+
+% --- Macro para igualar tamaño de figuras ---
+\newcommand{\impfig}[1]{\includegraphics[width=\linewidth,height=0.46\textheight,keepaspectratio]{#1}}
+
+\title{Mejor Modelo: Random Forest}
+\author{Equipo 03 — Catalina Leal, Lucas D. Carrillo, Lucas E. Veras}
+\institute{Big Data y Machine Learning — PS2}
+\date{\today}
+
+\begin{document}
+
+% ===================== SLIDE 0 (PORTADA) =====================
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% ===================== SLIDE 1 (OBLIGATORIA) =====================
+\begin{frame}{Descripción General del Mejor Modelo}
+\small
+\begin{tabularx}{\textwidth}{@{}X X@{}}
+\multicolumn{2}{c}{\Large \textbf{Random Forest}}\\
+\midrule
+\multicolumn{1}{c}{\textbf{Versión 1: Bagging (Hellinger)}} & \multicolumn{1}{c}{\textbf{Versión 2: Selección de variables (Gini)}}\\
+\midrule
+\begin{minipage}[t]{\linewidth}
+\begin{itemize}
+  \item \texttt{num.trees} = 500
+  \item \texttt{mtry} = 26 (todas las variables)
+  \item \texttt{node.size} = 50
+  \item \texttt{split.rule} = Hellinger
+  \item Umbral $\tau^{*} = 0.522$ (max F1 en CV)
+\end{itemize}
+\end{minipage}
+&
+\begin{minipage}[t]{\linewidth}
+\begin{itemize}
+  \item \texttt{num.trees} = 1000
+  \item \texttt{mtry} = 6
+  \item \texttt{node.size} = 1
+  \item \texttt{split.rule} = Gini
+  \item Umbral $\tau^{*} = 0.340$ (max F1 en CV)
+\end{itemize}
+\end{minipage}
+\\
+\midrule
+\multicolumn{2}{c}{\textbf{Kaggle (Public Leaderboard): F1 = 0.63 (ambos modelos)}}\\
+\bottomrule
+\end{tabularx}
+\end{frame}
+
+% ===================== SLIDE 2 =====================
+\begin{frame}{Versión 1: Bagging}
+\small
+\begin{columns}[T,onlytextwidth]
+  \column{0.55\textwidth}
+  \begin{itemize}
+    \item \textbf{Idea}: ensamble con \texttt{mtry = 26} (todas), \texttt{num.trees = 500}; \textbf{Hellinger} favorece la clase minoritaria.
+    \item \textbf{Tuning}: 5-fold CV con métrica \textbf{F1}; barrido de $\tau\in[0.05,0.95]$ \ $\Rightarrow$ $\tau^{*}=0.522$.
+    \item \textbf{Diagnóstico}: menor varianza, buena sensibilidad en hogares pobres; \textit{node.size}=50 evita sobreajuste.
+    \item \textbf{Score}: \textbf{F1 = 0.63}.
+  \end{itemize}
+  \column{0.45\textwidth}
+  \textbf{Importancia (permutación)}\par\medskip
+  \impfig{importance_rf.jpg}
+  \vspace{0.4em}
+  \footnotesize\emph{Top señales}: horas trabajadas totales, edad del/la jefe, \# menores, tasa de ocupación, tipo de vivienda.
+\end{columns}
+\end{frame}
+
+% ===================== SLIDE 3 =====================
+\begin{frame}{Versión 2: Selección de Variables}
+\small
+\begin{columns}[T,onlytextwidth]
+  \column{0.55\textwidth}
+  \begin{itemize}
+    \item \textbf{Idea}: submuestreo de variables por división (\texttt{mtry = 6}) para reducir correlación entre árboles; \textbf{Gini}.
+    \item \textbf{Tuning}: 5-fold CV + barrido de umbral \ $\Rightarrow$ $\tau^{*}=0.340$ para maximizar \textbf{F1}.
+    \item \textbf{Diagnóstico}: \texttt{node.size}=1 permite árboles profundos; \texttt{num.trees}=1000 estabiliza el ensamble.
+    \item \textbf{Score}: \textbf{F1 = 0.63} (empate técnico).
+  \end{itemize}
+  \column{0.45\textwidth}
+  \textbf{Importancia (Gini)}\par\medskip
+  \impfig{importance.jpg}
+  \vspace{0.4em}
+  \footnotesize Patrón similar al Bagging: mercado laboral, demografía y vivienda dominan la predicción.
+\end{columns}
+\end{frame}
+
+% ===================== SLIDE 4 =====================
+\begin{frame}{Comparación con otros modelos}
+\small
+\begin{itemize}
+  \item \textbf{Métrica única}: \textbf{F1} (alineada con Kaggle).
+  \item \textbf{Hallazgo}: RF domina por su capacidad de capturar no linealidades e interacciones, su robustez ante colinealidad y la calibración del umbral $\tau^{*}$.
+\end{itemize}
+\medskip
+\small
+\begin{tabularx}{\textwidth}{l c X}
+\toprule
+\textbf{Modelo} & \textbf{F1} & \textbf{Notas} \\
+\midrule
+\textbf{RF (Bagging, Hellinger)} & \textbf{0.63} & mtry=26, trees=500, node=50, $\tau^{*}=0.522$ \\
+\textbf{RF (Gini, mtry=6)}       & \textbf{0.63} & trees=1000, node=1, $\tau^{*}=0.340$ \\
+RF (Umbral ROC)         & 0.62 & Misma familia; umbral definido por curva ROC, sin ajuste de F1 específico \\
+Logit                            & 0.62 & Lineal en log-odds; mejora con calibración de $\tau^{*}$ pero no capta interacciones complejas \\
+Lineal (MPL)                     & 0.61 & Fronteras lineales; desempeño estable y simple \\
+Elastic Net                      & 0.60 & Regulariza coeficientes; penaliza variables redundantes pero pierde no linealidad \\
+Gradient Boosting                & 0.57 & Árboles poco profundos; sin optimización de pesos de clase ni early stopping \\
+Naive Bayes (Down)               & 0.51 & Supone independencia; mejora con remuestreo pero persiste subajuste \\
+\bottomrule
+\end{tabularx}
+\medskip
+
+\footnotesize\textit{Clave:} el ajuste del umbral $\tau^{*}$ fue determinante en todos los modelos; los Random Forest superan al resto al combinar baja varianza y alta capacidad de discriminación.
+\end{frame}
+
+
+% ===================== SLIDE 5 =====================
+\begin{frame}{Aprendizajes y Recomendaciones}
+\small
+\begin{itemize}
+  \item \textbf{Principales aprendizajes metodológicos}
+  \begin{itemize}
+    \item El desempeño superior del \textbf{Random Forest} se explica por su capacidad para capturar interacciones y no linealidades, y por su \textbf{robustez frente a colinealidad y ruido}.
+    \item La combinación de \textbf{criterio Hellinger} y \textbf{calibración explícita del umbral} ($\tau^{*}$) resultó determinante para optimizar la métrica de \textbf{F1} en contextos desbalanceados.
+    \item Las variables con mayor poder predictivo se concentran en la \textbf{inserción laboral del hogar}, la \textbf{estructura demográfica} y las \textbf{condiciones habitacionales}.
+  \end{itemize}
+
+  \item \textbf{Implicaciones para política pública y focalización}
+  \begin{itemize}
+    \item La calibración de $\tau^{*}$ permite una mejor identificación de hogares vulnerables y, por tanto, una focalización más precisa de la política.
+    \item Es necesario incorporar esquemas de \textbf{validación fuera de muestra por Dominio} (territorio) y monitoreo de posibles \textbf{sesgos de exclusión}.
+    \item Estrategias \textbf{cost-sensitive} o el uso de \textbf{class weights} son recomendables para penalizar los falsos negativos en poblaciones vulnerables.
+  \end{itemize}
+
+  \item \textbf{Líneas de extensión técnica}
+  \begin{itemize}
+    \item Ampliar el \textbf{grid de hiperparámetros} y explorar variantes de boosting como \textit{XGBoost}.
+
+
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\end{document}
