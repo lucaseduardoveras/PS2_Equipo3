@@ -1,0 +1,171 @@
+% PLANTILLA BEAMER UNIVERSIDAD DE KYUSHU
+% Creado por Yu en 2024
+
+\documentclass[11pt]{beamer}
+% Puedes usar \documentclass[11pt,aspectratio=169]{beamer} 
+% para ajustar la relación de aspecto a 16:9.
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\definecolor{vino}{RGB}{128,0,32}
+\usepackage{listings}
+\usepackage[
+	backend=biber,
+	style=verbose,
+	sorting=ynt
+]{biblatex}
+
+\usetheme{Madrid}
+
+\author[Grupo 3]{Catalina Leal Rojas, Lucas Daniel Carrillo Aguirre, Lucas Eduardo Veras Costa}
+\title[Sección 1]{Datos}
+
+\setbeamertemplate{navigation symbols}{}
+
+% Descomenta la sección siguiente para mostrar una diapositiva de tabla de contenido
+% cada vez que comience una nueva sección
+% \AtBeginSection[]
+% {
+%  \begin{frame}<beamer>
+%  \frametitle{Tabla de contenidos}
+%  \tableofcontents[currentsection]
+%  \end{frame}
+% }
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+%-----------------------------------------------
+\begin{frame}{Fuente de datos}
+\small
+Los datos utilizados provienen de la \textit{Medición de Pobreza Monetaria y Desigualdad 2018}, elaborada por el \textit{DANE} en el marco de la misión \textit{Empalme de las Series de Empleo, Pobreza y Desigualdad (MESE)}.
+
+\medskip
+Esta fuente permite analizar con detalle las condiciones demográficas, laborales, educativas y de vivienda de los hogares colombianos. 
+
+\medskip
+Los datos se obtuvieron de la plataforma \textit{Kaggle}, donde se desarrolla una competencia para predecir la pobreza de los hogares.
+
+\medskip
+El conjunto se estructura en cuatro archivos: a nivel de hogar e individual, divididos en muestras de \textit{training} y \textit{testing}.
+\end{frame}
+
+%-----------------------------------------------
+\begin{frame}{Procesamiento y selección de variables}
+\small
+\begin{itemize}
+    \item Se integraron las bases de hogares y personas mediante el identificador \texttt{id}.
+    \item Se eliminaron variables con más del 40\% de valores faltantes.
+    \item Las variables restantes se seleccionaron según su relevancia teórica y empírica.
+    \item Las variables de ingreso del conjunto de entrenamiento no se incluyeron, al no estar disponibles en el conjunto de prueba.
+\end{itemize}
+
+\medskip
+\textbf{En total:} 26 variables —numéricas, categóricas y binarias— agrupadas en dimensiones laborales, demográficas, educativas y de vivienda.
+\end{frame}
+
+%-----------------------------------------------
+\begin{frame}{Variables utilizadas}
+\small
+\begin{table}[H]
+\centering
+\caption{Descripción y tipo de las variables utilizadas}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lll}
+\toprule
+\textbf{Variable} & \textbf{Tipo} & \textbf{Descripción} \\
+\midrule
+Dominio & Categórica & Área metropolitana o zona rural \\
+Pobre & Binaria & 1 si el hogar es pobre, 0 de lo contrario \\
+Nper & Numérica & Número de personas en el hogar \\
+n\_habitaciones & Numérica & Número de habitaciones \\
+tipo\_vivienda & Categórica & Tipo de vivienda \\
+bin\_headWoman & Binaria & 1 si el jefe del hogar es mujer \\
+cat\_educHead & Categórica & Nivel educativo del jefe del hogar \\
+t\_ocu & Numérica & Tasa de ocupación \\
+t\_inac & Numérica & Tasa de inactividad \\
+t\_dependencia & Numérica & Proporción de dependientes en el hogar \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+\end{frame}
+
+%-----------------------------------------------
+\begin{frame}{Estadísticas descriptivas (I)}
+\small
+\begin{itemize}
+    \item El conjunto de entrenamiento tiene 164.959 hogares y el de prueba 66.168 ($\approx$40\% de lo de entrenamiento).
+    \item Existe un fuerte desbalance: 80\% de hogares no pobres.
+\end{itemize}
+
+\medskip
+\begin{table}[H]
+\centering
+\caption{Diferencia de medias entre hogares pobres y no pobres (extracto)}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Variable & Pobre & No Pobre & Dif. & Signif. \\
+\midrule
+N. de Personas & 4.13 & 3.08 & +1.05 & *** \\
+N. Habitaciones & 3.03 & 3.48 & -0.45 & *** \\
+Edad Jefe & 46.8 & 50.3 & -3.5 & *** \\
+Horas Trabajadas Jefe & 28.6 & 34.5 & -5.9 & *** \\
+Tasa Ocupación & 0.43 & 0.62 & -0.19 & *** \\
+Tasa Inactividad & 0.46 & 0.33 & +0.13 & *** \\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{frame}
+
+%-----------------------------------------------
+\begin{frame}{Estadísticas descriptivas (II)}
+\small
+Los hogares pobres presentan:
+\begin{itemize}
+    \item Más integrantes y mayor número de menores de edad.
+    \item Menor nivel educativo y menor proporción con educación superior.
+    \item Mayores tasas de inactividad y trabajo por cuenta propia.
+\end{itemize}
+
+\medskip
+\begin{table}[H]
+\centering
+\caption{Promedios de variables categóricas}
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Variable} & \textbf{Pobre} & \textbf{No Pobre} \\
+\midrule
+Jefe mujer & 0.47 & 0.41 \\
+Jefe ocupado & 0.64 & 0.73 \\
+Jefe cuenta propia & 0.47 & 0.32 \\
+Vivienda propia total & 0.28 & 0.40 \\
+Arriendo & 0.44 & 0.38 \\
+Sin título & 0.11 & 0.03 \\
+Universitaria (jefe) & 0.10 & 0.32 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{frame}
+
+%-----------------------------------------------
+\begin{frame}{Conclusiones descriptivas}
+\small
+\begin{itemize}
+    \item Los hogares pobres exhiben condiciones laborales más precarias, menor capital humano y mayor dependencia económica.
+    \item Las diferencias en educación y tenencia de vivienda son las más marcadas entre grupos.
+    \item Estas variables reflejan desigualdades estructurales que el modelo buscará capturar para predecir la pobreza.
+\end{itemize}
+
+\medskip
+\textbf{Implicación:} las dimensiones laborales, educativas y habitacionales son determinantes esenciales en la clasificación de pobreza.
+\end{frame}
+
+%-----------------------------------------------
+\end{document}
